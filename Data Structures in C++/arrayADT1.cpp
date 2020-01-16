@@ -18,10 +18,9 @@ int main()
 
     int n,i;
     arr.A=new int[arr.s];
-    arr.length=0;
     cout<<"enter number of element";
     cin>>n;
-
+    arr.length=n;
     for(i=0;i<n;i++)
         cin>>arr.A[i];
 
