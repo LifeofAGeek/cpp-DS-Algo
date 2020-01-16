@@ -35,6 +35,21 @@ int Insert(struct Array *arr,int index,int value)
         arr->length++;
 }
 
+int Delete(struct Array *arr,int index)
+{
+    int x=0;
+    int i;
+    if(index>=0 && index<arr->length)
+    {
+        x=arr->A[index];
+        for(i=index;i<arr->length-1;i++)
+            arr->A[i]=arr->A[i+1];
+        arr->length--;
+        return x;
+    }
+    return 0;
+}
+
 int main()
 {
     struct Array arr;
@@ -52,6 +67,8 @@ int main()
     Append(&arr,10);
     Display(arr);
     Insert(&arr,3,12);
+    Display(arr);
+    cout<<"Deleted element "<<Delete(&arr,4);
     Display(arr);
 
 
