@@ -20,9 +20,21 @@ int Display(struct Array arr)
 
 int Append(struct Array *arr,int x)
 {
+    cout<<"Appended array"<<endl;
     if((*arr).length<(*arr).s)
         (*arr).A[(*arr).length++]=x;
 }
+
+int Insert(struct Array *arr,int index,int value)
+{
+        cout<<"inserted value = "<<value<<endl;
+        if(arr->length<arr->s)
+            for(int i=arr->length;i>index;i--)
+                arr->A[i]=arr->A[i-1];
+        arr->A[index]=value;
+        arr->length++;
+}
+
 int main()
 {
     struct Array arr;
@@ -38,6 +50,8 @@ int main()
         cin>>arr.A[i];
 
     Append(&arr,10);
+    Display(arr);
+    Insert(&arr,3,12);
     Display(arr);
 
 
