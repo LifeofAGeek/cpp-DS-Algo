@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cstdlib>
 using namespace std;
 
 struct Node
@@ -6,14 +7,11 @@ struct Node
     int data;
     Node *link;
 };
-
+struct Node *head; //global variable, can be accessed anywhere
+int Insert(int x);
+void Print();
 int main()
 {
-    Node *head=nullptr;
-    Node *temp = new Node;
-    temp->data=2;
-    temp->link=nullptr;
-    head=temp;
-
-    cout<<"done";
+    head=nullptr;
+    cout<<"all good";
 }
