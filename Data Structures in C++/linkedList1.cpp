@@ -11,24 +11,23 @@ Node *head; //global variable, can be accessed anywhere
 
 int Insert(int x) //Insert data in a node
 {
-    Node *temp=new node;
+    Node *temp=new Node;
     temp->data=x;
     temp->link=head;
-    if(head!=nullptr)
-        temp->link=head;
     head=temp;
 }
 
 void Print()
 {
     Node *temp=head;
-    cout<<
+    cout<<"List is :";
     while(temp!=nullptr)
     {
         cout<<temp->data;
         temp=temp->link;
 
     }
+    cout<<endl;
 }
 int main()
 {
@@ -44,6 +43,4 @@ int main()
         Insert(x);
         Print();
     }
-
-
 }
