@@ -38,7 +38,7 @@ int main()
 
     for(i=0;i<n;i++)
     {
-        cout<<"Enter data of node:"<<i<<endl;
+        cout<<"Enter data of node"<<"("<<i<<")"<<endl;
         cin>>x;
         Insert(x);
         Print();
