@@ -5,7 +5,7 @@ using namespace std;
 int gcd(int m,int n)
 {
 int mrcf;
-for(int i=1;i<=min(m,n);i++)
+for(int i=1;i<=math.min(m,n);i++)
 {
 if(m%i==0 && n%i==0)
   mcrf=i;
