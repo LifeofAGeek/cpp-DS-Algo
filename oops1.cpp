@@ -10,6 +10,18 @@ private:
 
 public:
 
+    Rectangle() //non-parametrized constructor
+    {
+        length=0;
+        breadth=0;
+    }
+
+    Rectangle(float l, float b) //parametrized constructor
+    {
+        setLengthBreadth(l);
+        setLengthBreadth(b);
+    }
+
     float area()
     {
         return length*breadth;
@@ -32,6 +44,7 @@ public:
     {
         return breadth;
     }
+
 };
 
 int main()
