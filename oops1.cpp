@@ -21,11 +21,13 @@ public:
 
 int main()
 {
-    Rectangle r1,*r2;
+    Rectangle r1;
     r1.length=10;
     r1.breadth=5;
-    r2->length=15;
-    r2->breadth=3;
     cout<<r1.area()<<endl;
-    cout<<r2->area();
+    Rectangle *p=new Rectangle;
+    p->length=15;
+    p->breadth=3;
+    cout<<p->area();
+    return 0;
 }
