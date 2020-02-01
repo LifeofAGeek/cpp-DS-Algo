@@ -3,10 +3,12 @@ using namespace std;
 
 class Rectangle
 {
-public:
+private:
 
     float length;
     float breadth;
+
+public:
 
     float area()
     {
@@ -17,17 +19,25 @@ public:
     {
         return 2*(length+breadth);
     }
+    void setLengthBreadth(float l, float b)
+    {
+        length=l;
+        breadth=b;
+    }
+    float getlength()
+    {
+        return length;
+    }
+    float getBreadth()
+    {
+        return breadth;
+    }
 };
 
 int main()
 {
-    Rectangle r1;
-    r1.length=10;
-    r1.breadth=5;
-    cout<<r1.area()<<endl;
-    Rectangle *p=new Rectangle;
-    p->length=15;
-    p->breadth=3;
-    cout<<p->area();
+    Rectangle r;
+    r.setLengthBreadth(10,5);
+    cout<<r.getlength()<<endl<<r.getBreadth()<<endl<<r.area()<<endl<<r.perimeter();
     return 0;
 }
