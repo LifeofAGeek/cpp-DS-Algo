@@ -10,13 +10,15 @@ private:
 
 public:
 
+    //constructor overloading
+
     Rectangle() //non-parametrized constructor
     {
         length=0;
         breadth=0;
     }
 
-    Rectangle(float l, float b) //parametrized constructor
+    Rectangle(float l=0, float b=0) //parametrized constructor
     {
         length=l;
         breadth=b;
