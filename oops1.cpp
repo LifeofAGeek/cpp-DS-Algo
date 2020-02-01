@@ -19,12 +19,12 @@ public:
     {
         return 2*(length+breadth);
     }
-    void setLengthBreadth(float l, float b)
+    void setLengthBreadth(float l, float b) //accessors
     {
         length=l;
         breadth=b;
     }
-    float getlength()
+    float getlength() //mutators
     {
         return length;
     }
