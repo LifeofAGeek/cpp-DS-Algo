@@ -22,6 +22,12 @@ public:
         setLengthBreadth(b);
     }
 
+    Rectangle(Rectangle &rect) //copy constructor
+    {
+        length=rect.length;
+        breadth=rect.breadth;
+    }
+
     float area()
     {
         return length*breadth;
@@ -49,8 +55,8 @@ public:
 
 int main()
 {
-    Rectangle r;
-    r.setLengthBreadth(10,5);
-    cout<<r.getlength()<<endl<<r.getBreadth()<<endl<<r.area()<<endl<<r.perimeter();
+    Rectangle r1,r2;
+    r1.setLengthBreadth(10,5);
+    cout<<r1.getlength()<<endl<<r1.getBreadth()<<endl<<r1.area()<<endl<<r1.perimeter();
     return 0;
 }
