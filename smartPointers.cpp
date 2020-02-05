@@ -9,6 +9,7 @@ private:
     float breadth;
 
 public:
+
     Rectangle(float l=0, float b=0) //parametrized constructor
     {
         length=l;
@@ -21,3 +22,9 @@ public:
     }
 
 };
+
+int main()
+{
+    unique_ptr<Rectangle> p(new Rectangle(10,5));
+    cout<<p->area()<<endl;
+}
