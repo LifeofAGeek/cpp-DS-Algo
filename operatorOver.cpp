@@ -16,14 +16,17 @@ void display()
 {
 cout<<real<<"+i"<<img<<endl;
 }
-Complex operator+(Complex c)
+friend Complex operator+(Complex c1,Complex c2);
+};
+
+Complex operator+()
 {
 Complex temp;
 temp.real=real+c.real;
 temp.img=img+c.img;
 return temp;
 }
-};
+
 int main()
 {
 Complex c1(5,3),c2(10,5),c3;
