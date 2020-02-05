@@ -14,13 +14,13 @@ img=i;
 }
 void display()
 {
-cout<<real<<“+i”<<img<<endl;
+cout<<real<<"+i"<<img<<endl;
 }
 Complex operator+(Complex c)
 {
 Complex temp;
-temp.real=real+c1.real;
-temp.img=img+c1.img;
+temp.real=real+c.real;
+temp.img=img+c.img;
 return temp;
 }
 };
