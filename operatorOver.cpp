@@ -19,11 +19,11 @@ cout<<real<<"+i"<<img<<endl;
 friend Complex operator+(Complex c1,Complex c2);
 };
 
-Complex operator+()
+Complex operator+(Complex c1,Complex c2)
 {
 Complex temp;
-temp.real=real+c.real;
-temp.img=img+c.img;
+temp.real=c1.real+c2.real;
+temp.img=c1.img+c2.img;
 return temp;
 }
 
