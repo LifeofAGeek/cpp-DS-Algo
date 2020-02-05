@@ -22,5 +22,6 @@ public:
 
 int main(){
 Solution answer;
-cout<<answer.breakPalindrome("abba");
+cout<<answer.breakPalindrome("abba")<<endl;
+cout<<answer.breakPalindrome("aaaa");
 }
