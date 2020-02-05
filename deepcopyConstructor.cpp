@@ -12,4 +12,10 @@ class test
         p=new int[a];
     }
 
+    test(test &t)
+    {
+        a=t.a;
+        p=new int[a]; //instead p=t.p which will just pointing to the same p i.e, shallow copy
+    }
 };
+
