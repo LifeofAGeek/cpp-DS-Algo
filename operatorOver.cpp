@@ -12,10 +12,7 @@ Complex(int r=0,int i=0)
 real=r;
 img=i;
 }
-void display()
-{
-cout<<real<<"+i"<<img<<endl;
-}
+friend ostream & operator<<(ostream &out,Complex &c);
 friend Complex operator+(Complex c1,Complex c2);
 };
 
@@ -27,9 +24,16 @@ temp.img=c1.img+c2.img;
 return temp;
 }
 
+ostream & operator<<(ostream &out,Complex &c)
+{
+out<<c.real<<"+i"<<c.img<<endl;
+return out;
+}
+
 int main()
 {
 Complex c1(5,3),c2(10,5),c3;
 c3=c1+c2;
-c3.display();
+cout<<c3<<endl;
+operator<<(cout,c3);
 }
