@@ -7,8 +7,9 @@ int display(int arr[], int n)
         cout<<arr[i]<<endl;
 }
 
-int MergeSort(int A[], int n)
+int MergeSort(int A[])
 {
+    int n=sizeof(A)/sizeof(A[0]);
     if(n==1)
         return;
 
@@ -16,7 +17,12 @@ int MergeSort(int A[], int n)
 
     for(int i=0;i<mid;i++)
         left[i]=A[i];
+    for(int i=mid;i<n;i++)
+        right[i]=A[i];
 
+    MergeSort(left);
+    MergeSort(right);
+    Merge(lrft,right,A)
 }
 
 int Merge(int L[], int R[], int A[])
