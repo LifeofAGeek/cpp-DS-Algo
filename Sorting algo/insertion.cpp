@@ -8,7 +8,13 @@ int temp = *xp;
 *yp = temp;
 }
 
-void sorting(int A[], int n)
+int display(int arr[], int n)
+{
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<endl;
+}
+
+int InsertionSort(int A[], int n)
 {
     int value,hole;
     for(int i=1;i<n;i++)
@@ -29,6 +35,7 @@ int main()
 {
     int A[]={2,5,31,22,9,74,11,32,7,87,65,40,44,86,91,63};
     int n=sizeof(A)/sizeof(A[0]);
-
+    InsertionSort(A,n);
+    display(A,n);
 }
 
