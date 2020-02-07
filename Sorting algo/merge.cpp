@@ -1,18 +1,25 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class MergeSort
+
+void swaping(int *xp, int *yp)
 {
-public:
-    int A[];
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
 
-    MergeSort()
+void sorting()
+{
+    int n=sizeof(A)/sizeof(A[0]);
 
-    sorting(int A[], int n)
-    {
+}
 
-    }
-};
+int display(int arr[], int n)
+{
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<endl;
+}
 
 int main()
 {
