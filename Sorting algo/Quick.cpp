@@ -29,6 +29,8 @@ void QuickSort(int *A, int start, int End)
 
 int main()
 {
-
+int A[]={2,5,31,22,9,74,11};
+    QuickSort(A,0,6);
+    for(int x:A) cout<<x<<endl;
 }
 
