@@ -8,25 +8,6 @@ int display(int arr[])
         cout<<arr[i]<<endl;
 }
 
-int MergeSort(int A[])
-{
-    int n=sizeof(A)/sizeof(A[0]);
-    if(n==1){
-        return 0;
-    }
-
-    int mid=n/2,left[mid],right[n-mid];
-
-    for(int i=0;i<mid;i++)
-        left[i]=A[i];
-    for(int i=mid;i<n;i++)
-        right[i]=A[i];
-
-    MergeSort(left);
-    MergeSort(right);
-    Merge(left,right,A)
-}
-
 int Merge(int L[], int R[], int A[])
 {
     int nL=sizeof(L)/sizeof(L[0]);
@@ -57,12 +38,34 @@ int Merge(int L[], int R[], int A[])
     while(j<=nR)
         A[k]=R[j];
         k++;
-        j++
+        j++;
 }
+
+int MergeSort(int A[])
+{
+    int n=sizeof(A)/sizeof(A[0]);
+    int mid=n/2;
+    int left[mid],right[n-mid];
+
+    if(n==1){
+        return 0;
+    }
+
+    for(int i=0;i<mid;i++)
+        left[i]=A[i];
+    for(int i=mid;i<n;i++)
+        right[i]=A[i];
+
+    MergeSort(left);
+    MergeSort(right);
+    Merge(left,right,A);
+}
+
+
 
 int main()
 {
-    int A[]={2,5,31,22,9,74,11,32,7,87,65,40,44,86,91,63};
+    int A[]={2,5,31,22,9,74,11};
     MergeSort(A);
     display(A);
 }
