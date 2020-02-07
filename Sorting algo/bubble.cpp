@@ -1,7 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int BubbleSort(int A[],int n,int c=0){
+int BubbleSort(int A[],int n,int c=0)
+{
 int flag;
 for(int j=1;j<=n;j++){
     flag=0;
