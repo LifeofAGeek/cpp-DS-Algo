@@ -1,8 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int display(int arr[], int n)
+int display(int arr[])
 {
+    int n=sizeof(arr)/sizeof(arr[0]);
     for(int i=0;i<n;i++)
         cout<<arr[i]<<endl;
 }
@@ -10,8 +11,9 @@ int display(int arr[], int n)
 int MergeSort(int A[])
 {
     int n=sizeof(A)/sizeof(A[0]);
-    if(n==1)
-        return;
+    if(n==1){
+        return 0;
+    }
 
     int mid=n/2,left[mid],right[n-mid];
 
@@ -22,7 +24,7 @@ int MergeSort(int A[])
 
     MergeSort(left);
     MergeSort(right);
-    Merge(lrft,right,A)
+    Merge(left,right,A)
 }
 
 int Merge(int L[], int R[], int A[])
@@ -35,11 +37,15 @@ int Merge(int L[], int R[], int A[])
     while(i<nL && j<nR)
     {
         if(L[i]<=R[j])
+           {
             A[k]=L[i];
             i++;
+           }
         else
+           {
             A[k]=R[j];
             j++;
+           }
         k++;
     }
 
@@ -57,8 +63,7 @@ int Merge(int L[], int R[], int A[])
 int main()
 {
     int A[]={2,5,31,22,9,74,11,32,7,87,65,40,44,86,91,63};
-    int n=sizeof(A)/sizeof(A[0]);
-    InsertionSort(A,n);
-    display(A,n);
+    MergeSort(A);
+    display(A);
 }
 
