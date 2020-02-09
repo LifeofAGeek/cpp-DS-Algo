@@ -16,5 +16,19 @@ int findMajority(int arr[], int n)
 
 bool isMajor(int major, int arr[], int n)
 {
-    for(int i)
+    int c=0;
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]==arr[major])
+            c++;
+    }
+    if(c>=n/2)
+            return true;
+        else
+            return false;
+}
+
+int main()
+{
+
 }
