@@ -12,23 +12,27 @@ int findMajority(int arr[], int n)
         if(c==0)
             major=i;
     }
+    return arr[major];
 }
 
-bool isMajor(int major, int arr[], int n)
+int isMajor(int arr[], int n)
 {
+    int major=findMajority(arr,n);
     int c=0;
     for(int i=0;i<n;i++)
     {
-        if(arr[i]==arr[major])
+        if(arr[i]==major)
             c++;
     }
     if(c>=n/2)
-            return true;
+            return 1;
         else
-            return false;
+            return 0;
 }
 
 int main()
 {
-
+    int a[] = {1,3,3,1,2,2};
+    int n = (sizeof(a))/sizeof(a[0]);
+    cout<<findMajority(a,n);
 }
