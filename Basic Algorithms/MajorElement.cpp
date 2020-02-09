@@ -6,11 +6,13 @@ int findMajority(int arr[], int n)
     int major=0, c=0;
     for(int i=0;i<n;i++)
     {
-        if(arr[major]==arr[i]) c++;
+        if(arr[major]==arr[i])
+            c++;
         else
             c--;
         if(c==0)
             major=i;
+            c=0;
     }
     return arr[major];
 }
@@ -32,7 +34,7 @@ int isMajor(int arr[], int n)
 
 int main()
 {
-    int a[] = {1,3,3,1,2,2};
+    int a[] = {1,2,3,1};
     int n = (sizeof(a))/sizeof(a[0]);
-    cout<<findMajority(a,n);
+    cout<<(isMajor(a,n)==1?"Major element exist!":"Major element does not exist!");
 }
