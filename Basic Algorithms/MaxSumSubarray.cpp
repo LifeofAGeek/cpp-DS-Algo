@@ -29,9 +29,28 @@ int bruteForce_n_square(int arr[], int n)
     }
     return max_sum;
 }
+
+int bruteForce_n_logn(int arr[], int n)
+{
+    if(n==1) return arr[0];
+    int m=n/2;
+    int left_MSS=bruteForce_n_logn(arr,m);
+    int right_MSS=bruteForce_n_logn(arr+m,n-m);
+    int left_sum=INT_MIN,right_sum=INT_MIN,sum=0;
+    for(int i=m;i<n;i++)
+        sum+=arr[i];
+        right_sum=max(right_sum,sum);
+    sum=0;
+    for(int i=(m-1);i>=0;i--)
+        sum+=arr[i];
+        left_sum=max(left_sum,sum);
+    int max_sum=max(left_MSS,right_MSS);
+    return max(max_sum,left_sum+right_sum);
+}
+
 int main()
 {
     int a[]={1,2,3,4};
     int n=(sizeof(a))/sizeof(a[0]);
-    cout<<"Max Sum Subarray is= "<<bruteForce_n_square(a,n);
+    cout<<"Max Sum Subarray is= "<<bruteForce_n_logn(a,n);
 }
