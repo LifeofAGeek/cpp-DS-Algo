@@ -30,7 +30,7 @@ int bruteForce_n_square(int arr[], int n)
     return max_sum;
 }
 
-int bruteForce_n_logn(int arr[], int n)
+int Divide_and_conquer_n_logn(int arr[], int n)
 {
     if(n==1) return arr[0];
     int m=n/2;
@@ -50,7 +50,7 @@ int bruteForce_n_logn(int arr[], int n)
 
 int main()
 {
-    int a[]={1,2,3,4};
+    int a[]={3,-2,5,-1};
     int n=(sizeof(a))/sizeof(a[0]);
     cout<<"Max Sum Subarray is= "<<bruteForce_n_logn(a,n);
 }
