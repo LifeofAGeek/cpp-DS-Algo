@@ -34,8 +34,8 @@ int Divide_and_conquer_n_logn(int arr[], int n)
 {
     if(n==1) return arr[0];
     int m=n/2;
-    int left_MSS=bruteForce_n_logn(arr,m);
-    int right_MSS=bruteForce_n_logn(arr+m,n-m);
+    int left_MSS=Divide_and_conquer_n_logn(arr,m);
+    int right_MSS=Divide_and_conquer_n_logn(arr+m,n-m);
     int left_sum=INT_MIN,right_sum=INT_MIN,sum=0;
     for(int i=m;i<n;i++)
         sum+=arr[i];
@@ -48,9 +48,23 @@ int Divide_and_conquer_n_logn(int arr[], int n)
     return max(max_sum,left_sum+right_sum);
 }
 
+int kadane_algo(int arr[], int n)
+{
+    int sum=0,ans=0;
+    for(int i=0;i<n;i++)
+    {
+        if(sum+arr[i]>0)
+            sum+=arr[i];
+        else
+            sum=0;
+        ans=(sum>ans?sum:ans);
+    }
+    return ans;
+}
+
 int main()
 {
     int a[]={3,-2,5,-1};
     int n=(sizeof(a))/sizeof(a[0]);
-    cout<<"Max Sum Subarray is= "<<bruteForce_n_logn(a,n);
+    cout<<"Max Sum Subarray is= "<<kadane_algo(a,n);
 }
