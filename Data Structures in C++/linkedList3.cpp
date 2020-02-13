@@ -8,7 +8,7 @@ struct Node
 };
 Node *head=nullptr;
 
-void createNode(int arr[], int n)
+void createNode(int arr[], int n) //array data to link list data
 {
     int i;
     Node *t,*last;
@@ -28,12 +28,21 @@ void createNode(int arr[], int n)
 
 }
 
-void Display(struct Node *p)
+void Display(struct Node *p) // front to end
 {
     while(p!=0)
     {
         cout<<p->value<<" ";
         p=p->next;
+    }
+}
+
+void Display_Recursive(struct Node *p) // front to end
+{
+    if(p!=0)
+    {
+        Display_Recursive(p->next);
+        cout<<p->value<<" ";
     }
 }
 
