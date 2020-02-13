@@ -46,6 +46,14 @@ void Display_Recursive(struct Node *p) // end to front
     }
 }
 
+int count_node(struct Node *p) //counting number of nodes in LinkList
+{
+    if(p==0)
+        return 0;
+    else
+        return (count_node(p->next)+1);
+}
+
 int main()
 {
     int a[]={1,2,3,4,5};
@@ -53,4 +61,5 @@ int main()
     Display(head);
     cout<<endl;
     Display_Recursive(head);
+    cout<<endl<<count_node(head);
 }
