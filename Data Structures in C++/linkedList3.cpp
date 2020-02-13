@@ -29,7 +29,7 @@ void createNode(int arr[], int n) //array data to link list data
 }
 
 void Display(struct Node *p) // front to end
-{
+{   cout<<"Displaying LinkedList:"<<endl;
     while(p!=0)
     {
         cout<<p->value<<" ";
@@ -54,7 +54,7 @@ int count_node(struct Node *p) //counting number of nodes in LinkList
         return (count_node(p->next)+1);
 }
 
-int add_nodesValue(struct Node *p)
+int add_nodesValue(struct Node *p) //sum of all nodes value
 {
     if(p==0)
         return 0;
@@ -62,7 +62,7 @@ int add_nodesValue(struct Node *p)
         return add_nodesValue(p->next)+p->value;
 }
 
-int maximum_node(struct Node *p)
+int maximum_node(struct Node *p) //maximum node value
 {
     int maxi=INT_MIN;
     while(p!=nullptr)
@@ -74,7 +74,7 @@ int maximum_node(struct Node *p)
     return(maxi);
 }
 
-string search_node(struct Node *p, int key)
+string search_node(struct Node *p, int key) //linear search
 {
     while(p!=0)
     {
@@ -83,6 +83,24 @@ string search_node(struct Node *p, int key)
         p=p->next;
     }
     return "Not found";
+}
+
+void insert_node(int pos, int data) //inserting a node at a given position
+{
+    Node *t=new Node,*p;
+    t->value=data;
+    if(pos==0){
+        t->next=head;
+        head=t;
+    }
+    if(p>0)
+    {
+        p=head;
+        for(int i=0;i<pos-1;i++)
+            p=p->next;
+        t->next=p->next;
+        p->next=t;
+    }
 }
 
 int main()
@@ -96,4 +114,7 @@ int main()
     cout<<endl<<"Sum of data of all nodes = "<<add_nodesValue(head);
     cout<<endl<<"Maximum node value is = "<<maximum_node(head);
     cout<<endl<<"key search status: "<<search_node(head,4);
+    insert_node(2,3);
+    cout<<endl<<"After Insertion"<<endl;
+    Display(head);
 }
