@@ -74,6 +74,17 @@ int maximum_node(struct Node *p)
     return(maxi);
 }
 
+string search_node(struct Node *p, int key)
+{
+    while(p!=0)
+    {
+        if(p->value==key)
+            return "Found";
+        p=p->next;
+    }
+    return "Not found";
+}
+
 int main()
 {
     int a[]={1,2,3,4,5};
@@ -84,4 +95,5 @@ int main()
     cout<<endl<<"No. of nodes = "<<count_node(head);
     cout<<endl<<"Sum of data of all nodes = "<<add_nodesValue(head);
     cout<<endl<<"Maximum node value is = "<<maximum_node(head);
+    cout<<endl<<"key search status: "<<search_node(head,4);
 }
