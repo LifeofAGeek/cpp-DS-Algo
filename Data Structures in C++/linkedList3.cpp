@@ -62,6 +62,18 @@ int add_nodesValue(struct Node *p)
         return add_nodesValue(p->next)+p->value;
 }
 
+int maximum_node(struct Node *p)
+{
+    int maxi=INT_MIN;
+    while(p!=nullptr)
+    {
+        if((p->value)>maxi)
+            maxi=p->value;
+        p=p->next;
+    }
+    return(maxi);
+}
+
 int main()
 {
     int a[]={1,2,3,4,5};
@@ -71,4 +83,5 @@ int main()
     Display_Recursive(head);
     cout<<endl<<"No. of nodes = "<<count_node(head);
     cout<<endl<<"Sum of data of all nodes = "<<add_nodesValue(head);
+    cout<<endl<<"Maximum node value is = "<<maximum_node(head);
 }
