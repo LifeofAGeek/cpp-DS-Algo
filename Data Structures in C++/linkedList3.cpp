@@ -37,7 +37,7 @@ void Display(struct Node *p) // front to end
     }
 }
 
-void Display_Recursive(struct Node *p) // front to end
+void Display_Recursive(struct Node *p) // end to front
 {
     if(p!=0)
     {
@@ -51,4 +51,6 @@ int main()
     int a[]={1,2,3,4,5};
     createNode(a,5);
     Display(head);
+    cout<<endl;
+    Display_Recursive(head);
 }
