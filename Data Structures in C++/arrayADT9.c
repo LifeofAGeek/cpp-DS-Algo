@@ -1,6 +1,6 @@
-Array Menu using C
 #include <stdio.h>
 #include<stdlib.h>
+
 struct Array
 {
 int *A;
@@ -24,10 +24,10 @@ void Insert(struct Array *arr,int index,int x)
 int i;
 if(index>=0 && index <=arr->length)
 {
-for(i=arr->length;i>index;i--)
+for(i=arr->length;i>index;i--){
 arr->A[i]=arr->A[i-1];
 arr->A[index]=x;
-arr->length++;
+arr->length++;}
 }
 }int Delete(struct Array *arr,int index)
 {
@@ -37,8 +37,8 @@ if(index>=0 && index<arr->length)
 {
 x=arr->A[index];
 for(i=index;i<arr->length-1;i++)
-arr->A[i]=arr->A[i+1];
-arr->length--;
+    arr->A[i]=arr->A[i+1];
+    arr->length--;
 return x;
 }
 return 0;
@@ -71,11 +71,11 @@ while(l<=h)
 {
 mid=(l+h)/2;
 if(key==arr.A[mid])
-return mid;
+r   eturn mid;
 else if(key<arr.A[mid])
-h=mid-1;
+    h=mid-1;
 else
-l=mid+1;
+    l=mid+1;
 }
 return -1;
 }
@@ -86,11 +86,11 @@ if(l<=h)
 {
 mid=(l+h)/2;
 if(key==a[mid])
-return mid;
+    return mid;
 else if(key<a[mid])
-return RBinSearch(a,l,mid-1,key);
+    return RBinSearch(a,l,mid-1,key);
 else
-return RBinSearch(a,mid+1,h,key);
+    return RBinSearch(a,mid+1,h,key);
 }
 return -1;
 }
@@ -102,7 +102,7 @@ return arr.A[index];return -1;
 void Set(struct Array *arr,int index,int x)
 {
 if(index>=0 && index<arr->length)
-arr->A[index]=x;
+    arr->A[index]=x;
 }
 int Max(struct Array arr)
 {
