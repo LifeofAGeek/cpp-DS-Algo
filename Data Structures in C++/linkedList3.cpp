@@ -7,4 +7,6 @@ struct Node
     Node *next;
 };
 
-struct Node
+Node *p;
+p=new Node;
+
