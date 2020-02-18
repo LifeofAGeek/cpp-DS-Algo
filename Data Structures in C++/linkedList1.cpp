@@ -23,7 +23,7 @@ void Print()
     cout<<"List is :";
     while(temp!=nullptr)
     {
-        cout<<temp->data;
+        cout<<temp->data<<" ";
         temp=temp->link;
 
     }
@@ -41,6 +41,6 @@ int main()
         cout<<"Enter data of node"<<"("<<i<<")"<<endl;
         cin>>x;
         Insert(x);
-        Print();
     }
+    Print();
 }
