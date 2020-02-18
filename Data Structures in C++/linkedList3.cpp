@@ -105,22 +105,21 @@ void insert_node(int pos, int data) //inserting a node at a given position
 
 void delete_node(struct Node *p,int pos)
 {
+    Node *q;
     if(pos==1)
     {
-        Node *temp=p;
-        p=p->next;
-        delete temp;
+        q=head;
+        head=head->next;
+        delete q;
     }
     if(pos>1)
     {
-        Node *temp=p;
-        Node *q=nullptr;
         for(int i=0;i<pos-1;i++){
-            q=temp;
-            temp=temp->next;
+            q=p;
+            p=p->next;
             }
-        q->next=temp->next;
-        delete temp;
+        q->next=p->next;
+        delete p;
     }
 }
 
