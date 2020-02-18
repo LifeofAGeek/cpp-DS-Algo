@@ -103,6 +103,27 @@ void insert_node(int pos, int data) //inserting a node at a given position
     }
 }
 
+void delete_node(struct Node *p,int pos)
+{
+    if(pos==1)
+    {
+        Node *temp=p;
+        p=p->next;
+        delete temp;
+    }
+    if(pos>1)
+    {
+        Node *temp=p;
+        Node *q=nullptr;
+        for(int i=0;i<pos-1;i++){
+            q=temp;
+            temp=temp->next;
+            }
+        q->next=temp->next;
+        delete temp;
+    }
+}
+
 int main()
 {
     int a[]={1,2,3,4,5};
@@ -116,5 +137,9 @@ int main()
     cout<<endl<<"key search status: "<<search_node(head,4);
     insert_node(2,3);
     cout<<endl<<"After Insertion"<<endl;
+    Display(head);
+    cout<<endl;
+    cout<<"After deletion"<<endl;
+    delete_node(head,1);
     Display(head);
 }
