@@ -125,18 +125,21 @@ void delete_node(struct Node *p,int pos)
 
 string isSorted(struct Node *p)
 {
-    while(p->value<p->next->value)
+    while(p!=0)
     {
+        if(p->value<p->next->value)
+            return "Sorted LL";
+        else
+            return "Unsorted LL";
         p=p->next;
-        return "Sorted LL";
     }
-    return "Unsorted LL"
+
 }
 
 int main()
 {
-    int a[]={1,2,3,4,5};
-    createNode(a,5);
+    int a[]={1,2,3,4,6,5};
+    createNode(a,6);
     Display(head);
     cout<<endl;
     Display_Recursive(head);
@@ -149,9 +152,9 @@ int main()
     Display(head);
     cout<<endl;
     cout<<"After deletion"<<endl;
-    delete_node(head,1);
+    delete_node(head,3);
     Display(head);
     cout<<endl;
-
+    cout<<isSorted(head);
 
 }
