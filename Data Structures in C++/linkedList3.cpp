@@ -123,6 +123,16 @@ void delete_node(struct Node *p,int pos)
     }
 }
 
+string isSorted(struct Node *p)
+{
+    while(p->value<p->next->value)
+    {
+        p=p->next;
+        return "Sorted LL";
+    }
+    return "Unsorted LL"
+}
+
 int main()
 {
     int a[]={1,2,3,4,5};
@@ -141,4 +151,7 @@ int main()
     cout<<"After deletion"<<endl;
     delete_node(head,1);
     Display(head);
+    cout<<endl;
+
+
 }
