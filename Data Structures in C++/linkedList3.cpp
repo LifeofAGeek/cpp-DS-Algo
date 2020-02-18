@@ -127,18 +127,17 @@ string isSorted(struct Node *p)
 {
     while(p!=0)
     {
-        if(p->value<p->next->value)
-            return "Sorted LL";
-        else
+        if(p->value>p->next->value)
             return "Unsorted LL";
         p=p->next;
     }
+    return "Sorted LL";
 
 }
 
 int main()
 {
-    int a[]={1,2,3,4,6,5};
+    int a[]={1,2,3,4,5};
     createNode(a,6);
     Display(head);
     cout<<endl;
