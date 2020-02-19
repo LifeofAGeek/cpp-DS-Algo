@@ -137,14 +137,16 @@ string isSorted(struct Node *p)
 
 void removeDuplicates(struct Node *p)
 {
-    Node *q=p->next;
-    while(p!=0)
+    Node *q;
+    while(p!=0 && p->next!=0)
     {
         if(q==0){
+            p=p->next;
             q=p->next;
         }
 
         if(p->value!=q->value){
+            p=q;
             q=q->next;
         }
         else{
@@ -175,5 +177,7 @@ int main()
     Display(head);
     cout<<endl<<isSorted(head);
     cout<<endl;
-    cout<<"After removing duplicates"<<endl<<Display(head);
+    cout<<"After removing duplicates"<<endl;
+    removeDuplicates(head);
+    Display(head);
 }
