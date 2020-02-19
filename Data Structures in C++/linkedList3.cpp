@@ -169,7 +169,7 @@ void reverse_LL(struct Node *p)
     head=q;
 }
 
-void reverse_recursive(struct Node *q=nullptr, struct Node *p)
+void reverse_recursive(struct Node *q, struct Node *p)
 {
     if(p!=0)
     {
@@ -207,7 +207,7 @@ int main()
     reverse_LL(head);
     cout<<endl<<"After reversing SLL"<<endl;
     Display(head);
-    reverse_recursive(head);
+    reverse_recursive(nullptr,head);
     cout<<endl<<"After recursive reversing SLL"<<endl;
     Display(head);
 }
