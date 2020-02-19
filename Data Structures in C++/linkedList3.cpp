@@ -105,7 +105,7 @@ void insert_node(int pos, int data) //inserting a node at a given position
 
 void delete_node(struct Node *p,int pos)
 {
-    Node *q;
+    Node *q=nullptr;
     if(pos==1)
     {
         q=head;
@@ -137,7 +137,7 @@ string isSorted(struct Node *p)
 
 int main()
 {
-    int a[]={1,2,3,4,5};
+    int a[]={1,2,3,4,5,1};
     createNode(a,6);
     Display(head);
     cout<<endl;
