@@ -135,6 +135,26 @@ string isSorted(struct Node *p)
 
 }
 
+void removeDuplicates(struct Node *p)
+{
+    Node *q=p->next;
+    while(p!=0)
+    {
+        if(q==0){
+            q=p->next;
+        }
+
+        if(p->value!=q->value){
+            q=q->next;
+        }
+        else{
+            p->next=q->next;
+            delete q;
+            q=p->next;
+        }
+    }
+}
+
 int main()
 {
     int a[]={1,2,3,4,5,1};
