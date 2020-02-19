@@ -5,6 +5,7 @@ struct Node
 int data;
 struct Node *next;
 }*first=NULL,*second=NULL,*third=NULL;
+
 void Display(struct Node *p)
 {
 while(p!=NULL)
@@ -13,6 +14,7 @@ printf("%d ",p->data);
 p=p->next;
 }
 }
+
 void create(int A[],int n)
 {
 int i;
@@ -30,6 +32,7 @@ last->next=t;
 last=t;
 }
 }
+
 void create2(int A[],int n)
 {
 int i;
@@ -46,6 +49,7 @@ last->next=t;
 last=t;
 }
 }
+
 void Merge(struct Node *p,struct Node *q)
 {
 struct Node *last;
@@ -80,13 +84,14 @@ last->next=NULL;
 if(p)last->next=p;
 if(q)last->next=q;
 }
+
 int main()
 {
 int A[]={10,20,40,50,60};
 int B[]={15,18,25,30,55};
 create(A,5);
 create2(B,5);
-Merge(frist,second);
+Merge(first,second);
 Display(third);
 return 0;
 }
