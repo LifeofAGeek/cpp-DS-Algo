@@ -156,6 +156,31 @@ void removeDuplicates(struct Node *p)
 }
 }
 
+void reverse_LL(struct Node *p)
+{
+    Node *q=nullptr,*r=nullptr;
+    while(p!=0)
+    {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }
+    head=q;
+}
+
+void reverse_recursive(struct Node *q=nullptr, struct Node *p)
+{
+    if(p!=0)
+    {
+        reverse_recursive(p,p->next);
+        p->next=q;
+    }
+    else{
+        head=q;
+    }
+}
+
 int main()
 {
     int a[]={1,2,1,3,4,5};
@@ -178,5 +203,11 @@ int main()
     cout<<endl;
     cout<<"After removing duplicates"<<endl;
     removeDuplicates(head);
+    Display(head);
+    reverse_LL(head);
+    cout<<endl<<"After reversing SLL"<<endl;
+    Display(head);
+    reverse_recursive(head);
+    cout<<endl<<"After recursive reversing SLL"<<endl;
     Display(head);
 }
