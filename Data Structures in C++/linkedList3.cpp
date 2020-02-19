@@ -173,7 +173,7 @@ int main()
     cout<<"After deletion"<<endl;
     delete_node(head,3);
     Display(head);
+    cout<<endl<<isSorted(head);
     cout<<endl;
-    cout<<isSorted(head);
-
+    cout<<"After removing duplicates"<<endl<<Display(head);
 }
