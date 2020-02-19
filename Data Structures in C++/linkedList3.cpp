@@ -137,29 +137,28 @@ string isSorted(struct Node *p)
 
 void removeDuplicates(struct Node *p)
 {
-    Node *q;
+    Node *q,*dup;
     while(p!=0 && p->next!=0)
     {
-        if(q==0){
-            p=p->next;
-            q=p->next;
-        }
+        q=p;
+        while(q->next!=0){
 
-        if(p->value!=q->value){
-            p=q;
-            q=q->next;
+        if(p->value==q->next->value){
+            dup = q->next;
+            q->next = q->next->next;
+            delete(dup);
         }
         else{
-            p->next=q->next;
-            delete q;
-            q=p->next;
+            q=q->next;
         }
     }
+    p=p->next;
+}
 }
 
 int main()
 {
-    int a[]={1,2,3,4,5,1};
+    int a[]={1,2,1,3,4,5};
     createNode(a,6);
     Display(head);
     cout<<endl;
