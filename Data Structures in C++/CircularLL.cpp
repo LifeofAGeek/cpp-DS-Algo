@@ -6,7 +6,7 @@ struct Node
     int data;
     Node *next;
 };
-Node head=nullptr;
+Node *head;
 
 void display(Node *p)
 {
@@ -33,8 +33,19 @@ void display_recursive(Node *p)
 void create_node(int arr[], int n)
 {
     int i;
-    Node *temp, *last;
-
+    Node *t, *last;
+    head=new Node;
+    head->data=arr[0];
+    head->next=head;
+    last=head;
+    for(i=1;i<n;i++)
+    {
+        t=new Node;
+        t->datat=arr[i];
+        t->next=nullptr;
+        last->next=t;
+        last=t;
+    }
 }
 
 int main()
