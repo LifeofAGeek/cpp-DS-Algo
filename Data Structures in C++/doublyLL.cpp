@@ -65,7 +65,7 @@ int main()
     create_nodes(a,6);
     display();
     cout<<endl;
-    insert_node(2,6);
+    insert_node(2,5);
     cout<<endl<<"After Insertion"<<endl;
     display();
 }
