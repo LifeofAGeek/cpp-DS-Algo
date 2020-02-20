@@ -29,6 +29,7 @@ void create_nodes(int arr[], int n)
 
 void display()
 {
+    cout<<"Displaying Doubly LinkedList:"<<endl;
     Node *p=first;
     while(p)
     {
@@ -37,10 +38,26 @@ void display()
     }
 }
 
+void insert_node(int val, int index)
+{
+    Node *t=new Node,*p=first;
+    t->value=val;
+    if(index==1)
+    {
+        first->prev=t;
+        t->next=first;
+        t->prev=nullptr;
+        first=t;
+    }
+    else{
+
+    }
+}
+
 int main()
 {
     int a[]={1,2,1,3,4,5};
-    create_node(a,6);
+    create_nodes(a,6);
     display();
     cout<<endl;
 }
