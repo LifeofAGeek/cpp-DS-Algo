@@ -59,6 +59,24 @@ void insert_node(int val, int index)
     }
 }
 
+void delete_node(int index)
+{
+    Node *p=first;
+    if(index==1)
+    {
+        first=first->next;
+        delete(p);
+        if(first) first->prev=nullptr;
+    }
+    else{
+        for(int i=1;i<index;i++)
+            p=p->next;
+        p->prev->next=p->next;
+        if(p->next) p->next->prev=p->prev;
+        delete(p);
+    }
+}
+
 int main()
 {
     int a[]={1,2,1,3,4,5};
