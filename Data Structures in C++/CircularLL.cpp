@@ -62,6 +62,14 @@ void insert_node(int val, int pos)
         t->next=p->next;
         p->next=t;
     }
+    else{
+        p=head;
+        t->next=head;
+        while(p->next!=head)
+            p=p->next;
+        p->next=t;
+        head=t;
+    }
 }
 
 int main()
