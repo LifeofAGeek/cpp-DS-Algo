@@ -57,7 +57,7 @@ void insert_node(int val, int pos)
     if(pos>0)
     {
         p=head;
-        for(int i=0;i<pos-1;i++)
+        for(int i=1;i<pos-1;i++)
             p=p->next;
         t->next=p->next;
         p->next=t;
@@ -80,4 +80,7 @@ int main()
     cout<<endl;
     display_recursive(head);
     cout<<endl;
+    insert_node(2,3);
+    cout<<endl<<"After Insertion"<<endl;
+    display(head);
 }
