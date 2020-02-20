@@ -30,6 +30,13 @@ void display_recursive(Node *p)
     flag=0;
 }
 
+void create_node(int arr[], int n)
+{
+    int i;
+    Node *temp, *last;
+
+}
+
 int main()
 {
 
