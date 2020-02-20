@@ -41,7 +41,6 @@ int main()
 {
     int a[]={1,2,1,3,4,5};
     create_node(a,6);
-    display(head);
+    display();
     cout<<endl;
-
 }
