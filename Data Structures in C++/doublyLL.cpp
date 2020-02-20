@@ -50,7 +50,12 @@ void insert_node(int val, int index)
         first=t;
     }
     else{
-
+        for(int i=1;i<index-1;i++)
+            p=p->next;
+        t->prev=p;
+        t->next=p->next;
+        p->next->prev=t;
+        p->next=t;
     }
 }
 
@@ -60,4 +65,7 @@ int main()
     create_nodes(a,6);
     display();
     cout<<endl;
+    insert_node(2,6);
+    cout<<endl<<"After Insertion"<<endl;
+    display();
 }
