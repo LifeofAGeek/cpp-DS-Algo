@@ -49,9 +49,19 @@ void create_node(int arr[], int n)
     }
 }
 
-void insert_node(Node *p)
+void insert_node(int val, int pos)
 {
-
+    Node *t,*p;
+    t=new Node;
+    t->data=val;
+    if(pos>0)
+    {
+        p=head;
+        for(int i=0;i<pos-1;i++)
+            p=p->next;
+        t->next=p->next;
+        p->next=t;
+    }
 }
 
 int main()
