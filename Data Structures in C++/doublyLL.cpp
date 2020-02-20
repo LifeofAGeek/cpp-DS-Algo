@@ -86,4 +86,8 @@ int main()
     insert_node(2,5);
     cout<<endl<<"After Insertion"<<endl;
     display();
+    cout<<endl;
+    cout<<"After deletion"<<endl;
+    delete_node(5);
+    display();
 }
