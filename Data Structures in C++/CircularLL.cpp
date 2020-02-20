@@ -114,4 +114,8 @@ int main()
     insert_node(2,3);
     cout<<endl<<"After Insertion"<<endl;
     display(head);
+    cout<<endl;
+    cout<<"After deletion"<<endl;
+    delete_node(head,1);
+    display(head);
 }
