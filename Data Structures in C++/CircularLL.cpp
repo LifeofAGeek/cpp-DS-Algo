@@ -72,6 +72,8 @@ void insert_node(int val, int pos)
     }
 }
 
+
+
 int main()
 {
     int a[]={1,2,1,3,4,5};
