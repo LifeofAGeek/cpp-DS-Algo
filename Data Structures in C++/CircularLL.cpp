@@ -72,7 +72,36 @@ void insert_node(int val, int pos)
     }
 }
 
+void delete_node(Node *p, int index)
+{
+Node *q;
+int i,x;
 
+if(index==1)
+{
+while(p->next!=head)p=p->next;
+x=head->data;
+if(head==p)
+{
+delete(head);
+head=nullptr;
+}
+else{
+p->next=head->next;
+delete(head);
+head=p->next;
+}
+}
+else
+{
+for(i=0;i<index-2;i++)
+    p=p->next;
+q=p->next;
+p->next=q->next;
+x=q->data;
+delete(q);
+}
+}
 
 int main()
 {
