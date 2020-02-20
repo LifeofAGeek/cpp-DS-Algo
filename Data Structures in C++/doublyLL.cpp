@@ -77,6 +77,20 @@ void delete_node(int index)
     }
 }
 
+void reverse_DLL(Node *p)
+{
+    Node *temp;
+    while(p!=0)
+    {
+        temp=p->next;
+        p->next=p->prev;
+        p->prev=temp;
+        p=p->prev;
+        if(p!=0 && p->next==0)
+            first=p;
+    }
+}
+
 int main()
 {
     int a[]={1,2,1,3,4,5};
@@ -89,5 +103,8 @@ int main()
     cout<<endl;
     cout<<"After deletion"<<endl;
     delete_node(5);
+    display();
+    reverse_DLL(first);
+    cout<<endl<<"After reversing DLL"<<endl;
     display();
 }
