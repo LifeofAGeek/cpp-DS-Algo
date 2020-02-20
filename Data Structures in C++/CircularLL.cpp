@@ -49,6 +49,11 @@ void create_node(int arr[], int n)
     }
 }
 
+void insert_node(Node *p)
+{
+
+}
+
 int main()
 {
     int a[]={1,2,1,3,4,5};
