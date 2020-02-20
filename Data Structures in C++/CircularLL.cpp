@@ -13,7 +13,7 @@ void display(Node *p)
      cout<<"Displaying LinkedList:"<<endl;
     do
     {
-        cout<<p->next<<" ";
+        cout<<p->data<<" ";
         p=p->next;
     }while(p!=head);
 }
@@ -24,10 +24,11 @@ void display_recursive(Node *p)
     if(p!=head || flag==0)
     {
         flag=1;
-        cout<<p->data<<" ";
         display_recursive(p->next);
+        cout<<p->data<<" ";
     }
     flag=0;
+
 }
 
 void create_node(int arr[], int n)
@@ -41,8 +42,8 @@ void create_node(int arr[], int n)
     for(i=1;i<n;i++)
     {
         t=new Node;
-        t->datat=arr[i];
-        t->next=nullptr;
+        t->data=arr[i];
+        t->next=last->next;
         last->next=t;
         last=t;
     }
@@ -50,5 +51,10 @@ void create_node(int arr[], int n)
 
 int main()
 {
-
+    int a[]={1,2,1,3,4,5};
+    create_node(a,6);
+    display(head);
+    cout<<endl;
+    display_recursive(head);
+    cout<<endl;
 }
