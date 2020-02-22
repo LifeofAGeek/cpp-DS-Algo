@@ -10,12 +10,12 @@ Node *head;
 
 void reverse_K_nodes(int index)
 {
-    Node *q=nullptr,*r=nullptr,*temp=head;
+    Node *q=nullptr,*r=nullptr,*p,*temp=head,*join;
     for(int i=0;i<index;i++)
         temp=temp->next;
+    join=temp->next;
     temp->next=nullptr;
-    temp=head;
-    while(temp!=0)
+    while(p!=0)
     {
         r=q;
         q=p;
