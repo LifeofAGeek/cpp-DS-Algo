@@ -181,6 +181,29 @@ void reverse_recursive(struct Node *q, struct Node *p)
     }
 }
 
+void reverse_K_nodes(int index)
+{
+    Node *q=nullptr,*r=nullptr,*p=head,*temp=head,*join;
+    for(int i=0;i<index-1;i++)
+        temp=temp->next;
+    join=temp->next;
+    temp->next=nullptr;
+    while(p!=0)
+    {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }head=q;
+    temp=head;
+    while(temp->next!=0)
+    {
+        temp=temp->next;
+    }
+    temp->next=join;
+}
+
+
 int main()
 {
     int a[]={1,2,1,3,4,5};
@@ -209,5 +232,8 @@ int main()
     Display(head);
     reverse_recursive(nullptr,head);
     cout<<endl<<"After recursive reversing SLL"<<endl;
+    Display(head);
+    cout<<endl;
+    reverse_K_nodes(3);
     Display(head);
 }
