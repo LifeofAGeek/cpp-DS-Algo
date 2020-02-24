@@ -11,8 +11,11 @@ struct Stack
 int main()
 {
     struct Stack st;
+    cout<<"Enter Size of Stack"<<endl;
     cin>>st.Size;
     st.s=new int[st.Size];
     st.top=-1;
-    cout<<st.top<<" "<<st.Size;
+    if(st.top==-1) cout<<"Empty Stack!";
+    if(st.top==st.Size-1) cout<<"Full Stack!";
+
 }
