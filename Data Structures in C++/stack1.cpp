@@ -8,6 +8,22 @@ struct Stack
     int *s;
 };
 
+void push(Stack *st, int val)
+{
+    if(st->top==(st->Size)-1)
+        cout<<"Stack Overflow!!";
+    else{
+        st->top++;
+        st->s[st->top]=val;
+    }
+}
+
+void display(Stack *st)
+{
+    for(int i=0;i<=st->top;i++)
+        cout<<st->s[i]<<" ";
+}
+
 int main()
 {
     struct Stack st;
@@ -15,7 +31,7 @@ int main()
     cin>>st.Size;
     st.s=new int[st.Size];
     st.top=-1;
-    if(st.top==-1) cout<<"Empty Stack!";
-    if(st.top==st.Size-1) cout<<"Full Stack!";
-
+    push(&st,1);
+    push(&st,2);
+    display(&st);
 }
