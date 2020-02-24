@@ -8,6 +8,14 @@ struct Stack
     int *s;
 };
 
+void create_stack(Stack *st)
+{
+    cout<<"Enter Size of Stack"<<endl;
+    cin>>st->Size;
+    st->s=new int[st->Size];
+    st->top=-1;
+}
+
 void push(Stack *st, int val)
 {
     if(st->top==(st->Size)-1)
@@ -49,10 +57,7 @@ void display(Stack st)
 int main()
 {
     struct Stack st;
-    cout<<"Enter Size of Stack"<<endl;
-    cin>>st.Size;
-    st.s=new int[st.Size];
-    st.top=-1;
+    create_stack(&st);
     push(&st,1);
     push(&st,2);
     display(st);
