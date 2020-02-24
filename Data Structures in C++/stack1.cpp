@@ -18,10 +18,32 @@ void push(Stack *st, int val)
     }
 }
 
-void display(Stack *st)
+int pop(Stack *st)
 {
-    for(int i=0;i<=st->top;i++)
-        cout<<st->s[i]<<" ";
+    int x=-1;
+    if(st->top==-1)
+        cout<<"Stack Underflow";
+    else{
+        x=st->s[st->top];
+        st->top--;
+    }
+    return x;
+}
+
+int peek(Stack st,int pos)
+{
+    int x=-1;
+    if(st.top-pos+1<0)
+        cout<<"Invalid Position";
+    else{
+        x=st.s[st.top-pos+1];
+    }
+    return x;
+}
+
+void display(Stack st)
+{
+    for(int i=0;i<=st.top;i++) cout<<st.s[i]<<" ";
 }
 
 int main()
@@ -33,5 +55,6 @@ int main()
     st.top=-1;
     push(&st,1);
     push(&st,2);
-    display(&st);
+    display(st);
+    cout<<endl<<peek(st,1);
 }
