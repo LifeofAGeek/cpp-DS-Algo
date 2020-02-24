@@ -56,5 +56,5 @@ int main()
     push(&st,1);
     push(&st,2);
     display(st);
-    cout<<endl<<peek(st,1);
+    cout<<endl<<peek(st,2);
 }
