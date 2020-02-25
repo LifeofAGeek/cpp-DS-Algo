@@ -203,6 +203,22 @@ void reverse_K_nodes(int index)
     temp->next=join;
 }
 
+void right_shift(int k)
+{
+    while(k>0)
+    {
+        static Node *q=head,*r=nullptr;
+        while(q->next!=0)
+    {
+        r=q;
+        q=q->next;
+    }
+        q->next=head;
+        r->next=nullptr;
+        head=q;
+        k--;
+    }
+}
 
 int main()
 {
@@ -235,5 +251,8 @@ int main()
     Display(head);
     cout<<endl;
     reverse_K_nodes(3);
+    Display(head);
+    cout<<endl;
+    right_shift(3);
     Display(head);
 }
