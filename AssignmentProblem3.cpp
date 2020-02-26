@@ -1,229 +1,177 @@
 //Circular Linked List -> CLL
 #include <iostream>
 using namespace std;
+template <class T>
 
-template<class T>
-class Node {
-public:
-    T value;
-    Node<T> *next;
-
-    Node();
-
-    explicit Node(T val);
-};
-
-template<class T>
-Node<T>::Node() {
-    next = nullptr;
-}
-
-template<class T>
-Node<T>::Node(T val) {
-    value = val;
-    next = nullptr;
-}
-
-
-template<class E>
-class C_LinkedList {
-
+class C_LinkedList
+{
 private:
-    Node<E> *head;
+    class Node
+    {
+    public:
+        T data;
+        Node *next;
+        Node(T val)
+        {
+            data = val;
+        }
+    };
+    Node *start, *end;
     int size;
 
 public:
-
-    D_LinkedList();
-
-    void add(E val);
-
-    void remove(E val);
-
-    void print();
-
-    E front();
-
-    E back();
-
-    void advance();
+    C_LinkedList()
+    {
+        start = nullptr;
+        size = 0;
+    }
+    T front()
+    {
+        if (size == 0)
+        {
+            return false;
+        }
+        return start->data;
+    }
+    T back()
+    {
+        if (size == 0)
+        {
+            return false;
+        }
+        return end->data;
+    }
+    void advance()
+    {
+        if (size == 0)
+        {
+            return;
+        }
+        start = start->next;
+        end = end->next;
+    }
+    void add(T val, int pos = -1)
+    {
+        if (pos < -1 || pos > size)
+        {
+            return;
+        }
+        size++;
+        Node *temp = new Node(val);
+        if (start == 0)
+        {
+            start = end = temp;
+            start->next = end;
+            end->next = start;
+            return;
+        }
+        if (pos == -1)
+        {
+            end->next = temp;
+            end = temp;
+            end->next = start;
+            return;
+        }
+        if (pos == 0)
+        {
+            temp->next = start;
+            start = temp;
+            end->next = temp;
+        }
+        else
+        {
+            pos--;
+            Node *current = start;
+            while (pos > 0)
+            {
+                current = current->next;
+                pos--;
+            }
+            temp->next = current->next;
+            current->next = temp;
+        }
+    }
+    T remove(int pos = -1)
+    {
+        if (size == 0 || pos < -1 || pos >= size)
+        {
+            return false;
+        }
+        size--;
+        T temp;
+        if (pos == -1)
+        {
+            pos = size;
+        }
+        if (size == 0)
+        {
+            temp = start->data;
+            delete start;
+            start = end = nullptr;
+        }
+        else if (pos == 0)
+        {
+            Node *ref = start;
+            temp = start->data;
+            end->next = start = start->next;
+            delete ref;
+        }
+        else
+        {
+            pos--;
+            Node *current = start;
+            while (pos > 0)
+            {
+                current = current->next;
+                pos--;
+            }
+            Node *ref = current->next;
+            if (ref == end)
+            {
+                end = current;
+            }
+            temp = current->next->data;
+            current->next = current->next->next;
+            delete ref;
+        }
+        return temp;
+    }
+    void print()
+    {
+        Node *current = start;
+        int count = size;
+        cout << "Size: " << size << " and CLL = [ ";
+        while(count--)
+        {
+            cout<<current->data<<" -> ";
+            current = current->next;
+        }
+        cout << "START ]\n";
+    }
 };
-
-
-template<class E>
-D_LinkedList<E>::C_LinkedList() {
-    head = nullptr;
-    size = 0;
-}
-
-
-template<class E>
-void D_LinkedList<E>::add(E val) {
-
-    Node<E> *p;
-    auto *t = new Node<E>(val);
-    if(pos>0)
-    {
-        p=head;
-        for(int i=1;i<pos-1;i++)
-            p=p->next;
-        t->next=p->next;
-        p->next=t;
-    }
-    else{
-        p=head;
-        t->next=head;
-        while(p->next!=head)
-            p=p->next;
-        p->next=t;
-        head=t;
-    }
-
-    s++;
-}
-
-template<class E>
-E C_LinkedList<E>::front()
+int main()
 {
-    if (size == 0)
-        {
-            return false;
-        }
-        return head->value;
-}
+    C_LinkedList<int> CLL;
+    CLL.add(10);
+    CLL.add(20);
+    CLL.add(30);
+    CLL.add(40);
+    CLL.add(50);
+    CLL.add(60);
+    CLL.print();
 
-template<class E>
-E C_LinkedList<E>::back()
-{
-    Node<E> *t = head;
-    if (size == 0)
-        {
-            return false;
-        }
+    cout<<"After deleting a node"<<endl;
+    CLL.remove();
+    CLL.print();
 
-    else{
-        while(t->next!=head)
-        {
-            t=t->next;
-        }
-        return t->value;
-    }
-}
+    cout<<"front node is "<<CLL.front()<<endl;
+    cout<<"rear node is "<<CLL.back()<<endl;
 
+    CLL.advance();
+    CLL.print();
 
-template<class E>
-void D_LinkedList<E>::remove(E index) {
-
-    Node<E> *p=head;
-    if(index==1)
-    {
-        first=first->next;
-        delete(p);
-        if(first) first->prev=nullptr;
-    }
-    else{
-        for(int i=1;i<index;i++)
-            p=p->next;
-        p->prev->next=p->next;
-        if(p->next) p->next->prev=p->prev;
-        delete(p);
-    }
-    s--;
-}
-template<class E>
-void D_LinkedList<E>::reverse() {
-
-    Node<E> *temp=nullptr,*p=first;
-    while(p!=0)
-    {
-        temp=p->next;
-        p->next=p->prev;
-        p->prev=temp;
-        p=p->prev;
-        if(p!=0 && p->next==0)
-            first=p;
-    }
-}
-
-template<class E>
-int D_LinkedList<E>::size() {
-    return s;
-}
-
-template<class E>
-void D_LinkedList<E>::insert_node(int index, E val) {
-
-    auto *t = new Node<E>(val);
-    Node<E> *p=first;
-    if (index < 0 || index > s) {
-        char buff[32];
-        snprintf(buff, sizeof(buff), "Index: %d, Size: %d", index, s);
-        throw std::out_of_range(buff);
-    }
-
-    if (index == 1) {
-        addFirst(val);
-        return;
-    }
-
-    if (index == s) {
-        add(val);
-        return;
-    }
-
-    for(int i=1;i<index-1;i++)
-            p=p->next;
-        t->prev=p;
-        t->next=p->next;
-        p->next->prev=t;
-        p->next=t;
-
-    s++;
-
-}
-
-template<class E>
-void D_LinkedList<E>::print() {
-
-    Node<E> *current = first;
-
-    cout << "Size: " << s << " -> [ ";
-    while (current != nullptr) {
-        cout << current->value << " ";
-        current = current->next;
-    }
-    cout << "] " << endl;
-}
-
-int main() {
-    D_LinkedList<int> DLL{};
-
-    DLL.add(20);
-    DLL.add(10);
-    DLL.add(50);
-    DLL.add(40);
-    DLL.add(70);
-    DLL.add(60);
-    DLL.add(80);
-    DLL.addFirst(15);
-    DLL.addFirst(25);
-    DLL.add(90);
-    DLL.insert_node(3, 110);
-    DLL.add(100);
-    DLL.insert_node(2, 30);
-    cout<<"Doubly LinkedList after insertion of nodes"<<endl;
-    DLL.print();
-
-    int index=2;
-    cout << endl << "Doubly LinkedList <--> delete node at index: "<<index<< endl;
-    DLL.delete_node(index);
-    DLL.print();
-
-    cout << endl << "doubly LinkedList <--> reverse" << endl;
-    DLL.reverse();
-    DLL.print();
+    cout<<"front node is "<<CLL.front()<<endl;
+    cout<<"rear node is "<<CLL.back()<<endl;
 
     return 0;
 }
-
-
