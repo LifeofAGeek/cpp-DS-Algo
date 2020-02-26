@@ -1,4 +1,4 @@
-//Singly Linked List -> SLL
+//Doubly Singly Linked List -> SLL
 #include <iostream>
 using namespace std;
 
@@ -26,33 +26,25 @@ Node<T>::Node(T val) {
 
 
 template<class E>
-class LinkedList {
+class D_LinkedList {
 
-private:
-    Node<E> *head;
+//private:
+    Node<E> *first;
     int s;
 
 public:
 
-    LinkedList();
+    D_LinkedList();
 
-    void add(E e);
+    void insert_node(int index, E val);
 
-    void add(int index, E e);
+    void addFirst(E val);
 
-    void addFirst(E e);
+    void add(E val);
 
-    void addLast(E e);
-
-    void remove(E e);
-
-    void removeFirst();
-
-    void removeLast();
+    void delete_node(E val);
 
     int size();
-
-    void Search_Swap(E e);
 
     void reverse();
 
@@ -60,227 +52,122 @@ public:
 };
 
 template<class E>
-LinkedList<E>::LinkedList() {
-    head = nullptr;
+D_LinkedList<E>::D_LinkedList() {
+    first = nullptr;
     s = 0;
 }
 
 template<class E>
-void LinkedList<E>::addFirst(E e) {
-    auto *newNode = new Node<E>(e);
-    if (head == nullptr) {
-        head = newNode;
+void D_LinkedList<E>::addFirst(E val) {
+    auto *t = new Node<E>(val);
+    if (first == nullptr) {
+        first = t;
     }
     else {
-        newNode->next = head;
-        head = newNode;
+        first->prev=t;
+        t->next=first;
+        t->prev=nullptr;
+        first=t;
     }
 
     s++;
 }
 
 template<class E>
-void LinkedList<E>::add(E e) {
+void D_LinkedList<E>::add(E val) {
 
-    auto *newNode = new Node<E>(e);
-    if (head == nullptr) {
-        head = newNode;
+    auto *t = new Node<E>(val);
+    Node<E> *p=first;
+    if (first == nullptr) {
+        first = t;
         s++;
         return;
     }
-
-    Node<E> *current = head;
-    Node<E> *tmp;
-
-    do {
-        tmp = current;
-        current = current->next;
-    } while (current != nullptr);
-
-
-    tmp->next = newNode;
+    while(p->next!=0){
+        p=p->next;
+    }
+    t->prev=p;
+    t->next=nullptr;
+    p->next=t;
 
     s++;
 }
 
 template<class E>
-void LinkedList<E>::remove(E e) {
+void D_LinkedList<E>::delete_node(E index) {
 
-    Node<E> *current = head;
-    Node<E> *prev = nullptr;
-    bool found = false;
-
-    if (current == nullptr) {
-        cerr << "Err: can't perform remove() on an empty list" << endl;
-        return;
+    Node<E> *p=first;
+    if(index==1)
+    {
+        first=first->next;
+        delete(p);
+        if(first) first->prev=nullptr;
     }
-
-    do {
-        if (current->value == e) {
-            found = true;
-            break;
-        }
-
-        prev = current;
-        current = current->next;
-    } while (current != nullptr);
-
-    if (!found) {
-        cerr << "Err: no element found with value " << e << endl;
-        return;
+    else{
+        for(int i=1;i<index;i++)
+            p=p->next;
+        p->prev->next=p->next;
+        if(p->next) p->next->prev=p->prev;
+        delete(p);
     }
-
-    // if the first element
-    if (current == head) {
-        prev = head;
-        head = current->next;
-        delete prev;
-        return;
-    }
-
-    // if the last element
-    if (current->next == nullptr) {
-        prev->next = nullptr;
-        delete current;
-        return;
-    }
-
-    prev->next = current->next;
-    delete current;
-
     s--;
 }
-
 template<class E>
-void LinkedList<E>::removeFirst() {
-    Node<E> *tmp = head;
+void D_LinkedList<E>::reverse() {
 
-    if (tmp == nullptr) {
-        cerr << "Err: can't perform removeFirst() on an empty list" << endl;
-        return;
+    Node<E> *temp=nullptr,*p=first;
+    while(p!=0)
+    {
+        temp=p->next;
+        p->next=p->prev;
+        p->prev=temp;
+        p=p->prev;
+        if(p!=0 && p->next==0)
+            first=p;
     }
-
-    head = tmp->next;
-    delete tmp;
-
-    s--;
 }
 
 template<class E>
-void LinkedList<E>::removeLast() {
-    Node<E> *current = head;
-    Node<E> *prev = nullptr;
-
-    if (current == nullptr) {
-        cerr << "Err: can't perform removeLast() on an empty list" << endl;
-        return;
-    }
-
-    do {
-        prev = current;
-        current = current->next;
-    } while (current->next != nullptr);
-
-
-    if (current->next == nullptr) {
-        prev->next = nullptr;
-        delete current;
-        s--;
-        return;
-    }
-
-}
-
-template<class E>
-void LinkedList<E>::reverse() {
-
-    Node<E> *current = head;
-    Node<E> *newNext = nullptr;
-    Node<E> *tmp;
-
-    if (current == nullptr) {
-        cerr << "Err: can't perform reverse() on an empty list" << endl;
-        return;
-    }
-
-    do {
-        tmp = current->next;
-        current->next = newNext;
-        newNext = current;
-        current = tmp;
-    } while (current != nullptr);
-
-    head = newNext;
-}
-
-template<class E>
-int LinkedList<E>::size() {
+int D_LinkedList<E>::size() {
     return s;
 }
 
 template<class E>
-void LinkedList<E>::addLast(E e) {
-    add(e);
-}
+void D_LinkedList<E>::insert_node(int index, E val) {
 
-template<class E>
-void LinkedList<E>::add(int index, E e) {
-
+    auto *t = new Node<E>(val);
+    Node<E> *p=first;
     if (index < 0 || index > s) {
         char buff[32];
         snprintf(buff, sizeof(buff), "Index: %d, Size: %d", index, s);
         throw std::out_of_range(buff);
     }
 
-    if (index == 0) {
-        addFirst(e);
+    if (index == 1) {
+        addFirst(val);
         return;
     }
 
     if (index == s) {
-        addLast(e);
+        add(val);
         return;
     }
 
-    Node<E> *current = head;
-    auto *newNode = new Node<E>(e);
-
-    int i = 0;
-    do {
-        if (i++ == index) {
-            break;
-        }
-        current = current->next;
-    } while (current != nullptr);
-
-    newNode->next = current->next;
-    current->next = newNode;
+    for(int i=1;i<index-1;i++)
+            p=p->next;
+        t->prev=p;
+        t->next=p->next;
+        p->next->prev=t;
+        p->next=t;
 
     s++;
 
 }
 
 template<class E>
-void LinkedList<E>::Search_Swap(E e) {
-    Node<E> *current = head,*prev=nullptr;
-    E temp;
+void D_LinkedList<E>::print() {
 
-    while (current!=0) {
-        if (current->value == e) {
-            temp=prev->value;
-            prev->value=current->value;
-            current->value=temp;
-        }
-        else{
-        prev=current;
-        current = current->next;
-        }
-    }
-}
-template<class E>
-void LinkedList<E>::print() {
-
-    Node<E> *current = head;
+    Node<E> *current = first;
 
     cout << "Size: " << s << " -> [ ";
     while (current != nullptr) {
@@ -291,48 +178,32 @@ void LinkedList<E>::print() {
 }
 
 int main() {
-    LinkedList<int> SLL{};
+    D_LinkedList<int> DLL{};
 
+    DLL.add(20);
+    DLL.add(10);
+    DLL.add(50);
+    DLL.add(40);
+    DLL.add(70);
+    DLL.add(60);
+    DLL.add(80);
+    DLL.addFirst(15);
+    DLL.addFirst(25);
+    DLL.add(90);
+    DLL.insert_node(3, 110);
+    DLL.add(100);
+    DLL.insert_node(2, 30);
+    cout<<"Doubly LinkedList after insertion of nodes"<<endl;
+    DLL.print();
 
-    SLL.add(20);
-    SLL.add(10);
-    SLL.add(50);
-    SLL.add(40);
-    SLL.add(70);
-    SLL.add(60);
-    SLL.add(80);
+    int index=2;
+    cout << endl << "Doubly LinkedList <--> delete node at index: "<<index<< endl;
+    DLL.delete_node(index);
+    DLL.print();
 
-    SLL.addFirst(15);
-
-    SLL.add(90);
-    SLL.add(2, 110);
-    SLL.add(5, 30);
-
-    SLL.addLast(100);
-
-    SLL.print();
-
-    cout << endl << "LinkedList->remove(60)" << endl;
-    SLL.remove(60);
-    SLL.print();
-
-    cout << endl << "LinkedList->reverse" << endl;
-    SLL.reverse();
-    SLL.print();
-
-    cout << endl << "LinkedList->removeFirst" << endl;
-    SLL.removeFirst();
-    SLL.print();
-
-    cout << endl << "LinkedList->removeLast" << endl;
-    SLL.removeLast();
-    SLL.print();
-
-    int value=50;
-    cout << endl << "LinkedList->Search for Node value "<<value<<" and Swap with it's previous node" << endl;
-    SLL.Search_Swap(value);
-    cout<<endl;
-    SLL.print();
+    cout << endl << "doubly LinkedList <--> reverse" << endl;
+    DLL.reverse();
+    DLL.print();
 
     return 0;
 }
