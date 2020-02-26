@@ -60,38 +60,61 @@ D_LinkedList<E>::C_LinkedList() {
 template<class E>
 void D_LinkedList<E>::add(E val) {
 
+    Node<E> *p;
     auto *t = new Node<E>(val);
-    Node<E> *p=first;
-    if (first == nullptr) {
-        first = t;
-        s++;
-        return;
+    if(pos>0)
+    {
+        p=head;
+        for(int i=1;i<pos-1;i++)
+            p=p->next;
+        t->next=p->next;
+        p->next=t;
     }
-    while(p->next!=0){
-        p=p->next;
+    else{
+        p=head;
+        t->next=head;
+        while(p->next!=head)
+            p=p->next;
+        p->next=t;
+        head=t;
     }
-    t->prev=p;
-    t->next=nullptr;
-    p->next=t;
 
     s++;
 }
 
 template<class E>
-E D_LinkedList<E>::front()
+E C_LinkedList<E>::front()
 {
     if (size == 0)
         {
             return false;
         }
-        return head->data;
+        return head->value;
+}
+
+template<class E>
+E C_LinkedList<E>::back()
+{
+    Node<E> *t = head;
+    if (size == 0)
+        {
+            return false;
+        }
+
+    else{
+        while(t->next!=head)
+        {
+            t=t->next;
+        }
+        return t->value;
+    }
 }
 
 
 template<class E>
-void D_LinkedList<E>::delete_node(E index) {
+void D_LinkedList<E>::remove(E index) {
 
-    Node<E> *p=first;
+    Node<E> *p=head;
     if(index==1)
     {
         first=first->next;
