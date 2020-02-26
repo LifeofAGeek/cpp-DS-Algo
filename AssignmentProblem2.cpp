@@ -1,4 +1,4 @@
-//Doubly Singly Linked List -> DLL
+//Doubly Linked List -> DLL
 #include <iostream>
 using namespace std;
 
