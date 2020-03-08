@@ -11,6 +11,6 @@ int main()
     int c;
     int (*p)(int,int); //function pointer
     p=Add;
-    c=(*p)(5,5);
+    c = p(5,5);
     printf("%d",c);
 }
