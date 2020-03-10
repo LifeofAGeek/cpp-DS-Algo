@@ -36,7 +36,7 @@ void Queue::enqueue(int x)
         cout << "Queue is Full";
     else
     {
-        q[++rear] = x;
+        Q[++rear] = x;
     }
 }
 
@@ -63,11 +63,14 @@ void Queue::display()
 int main()
 {
     Queue q(5);
-    
+
+    q.enqueue(0);
     q.enqueue(1);
     q.enqueue(9);
     q.enqueue(9);
     q.enqueue(7);
 
+    q.dequeue();
 
+    q.display();
 }
