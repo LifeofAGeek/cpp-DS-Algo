@@ -47,8 +47,7 @@ int Queue::dequeue()
         printf("Queue is Empty\n");
     else
     {
-        x = Q[front + 1];
-        front++;
+        x = Q[(front++) + 1];
     }
     return x;
 }
