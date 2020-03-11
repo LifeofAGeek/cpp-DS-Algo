@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct TreeNode
@@ -7,6 +7,61 @@ struct TreeNode
     TreeNode *rchild;
     int data;
 };
+
+class Tree
+{
+    TreeNode *root;
+
+public:
+    Tree() { root = NULL; }
+    void CreateTree();
+    void Preorder() { Preorder(root); }
+    void Preorder(Node *p);
+    void Postorder() { Postorder(root); }
+    void Postorder(Node *p);
+    void Inorder() { Inorder(root); }
+    void Inorder(Node *p);
+    void Levelorder() { Levelorder(root); }
+    void Levelorder(Node *p);
+    int Height() { return Height(root); }
+    int Height(Node *root);
+};
+void Tree::CreateTree()
+{
+    TreeNode *p, *t;
+    int x;
+    Queue q(100);
+    printf("Eneter root value ");
+    scanf("%d", &x);
+    root = new TreeNode;
+    root->data = x;
+    root->lchild = root->rchild = NULL;
+    q.enqueue(root);
+    while (!q.isEmpty())
+    {
+        p = q.dequeue();
+        printf("eneter left child of %d ", p->data);
+        scanf("%d", &x);
+        if (x != -1)
+        {
+            t = new TreeNode;
+            t->data = x;
+            t->lchild = t->rchild = NULL;
+            p->lchild = t;
+            q.enqueue(t);
+        }
+        printf("eneter right child of %d ", p->data);
+        scanf("%d", &x);
+        if (x != -1)
+        {
+            t = new TreeNode;
+            t->data = x;
+            t->lchild = t->rchild = NULL;
+            p->rchild = t;
+            q.enqueue(t);
+        }
+    }
+}
 
 class Queue
 {
@@ -29,7 +84,7 @@ public:
     Queue(int size)
     {
         this->size = size;
-        Q = new int[size];
+        Q = new TreeNode *[size];
         front = rear = -1;
     }
 
@@ -38,7 +93,7 @@ public:
     void display();
 };
 
-void Queue::enqueue(int x)
+void Queue::enqueue(TreeNode *x)
 {
     if (isFull())
         cout << "Queue is Full";
@@ -48,9 +103,9 @@ void Queue::enqueue(int x)
     }
 }
 
-int Queue::dequeue()
+TreeNode *Queue::dequeue()
 {
-    int x = -1;
+    TreeNode *x = nullptr;
     if (isEmpty())
         printf("Queue is Empty\n");
     else
@@ -67,41 +122,8 @@ void Queue::display()
     printf("\n");
 }
 
-void create_tree()
+int main()
 {
-    Queue q(10);
-    int x;
-    cout<<"Enter value of root"<<endl;
-    cin>>x;
-    TreeNode *root;
-    root->data=x;
-    root->lchild=root->rchild=nullptr;
-    q.enqueue(root);
-    while(!q.isEmpty())
-    {
-        int Lchild,Rchild;
-        cout<<"Enter Value of Left Child if any else enter -1"<<endl;
-        cin>>Lchild;
-        cout<<"Enter Value of Right Child if any else enter -1"<<endl;
-        cin>>Rchild;
-        TreeNode *p=q.dequeue();
-
-        if(Lchild!=-1)
-        {
-            TreeNode *temp;
-            temp->data=Lchild;
-            temp->lchild=temp->rchild=nullptr;
-            q.enqueue(temp);
-            p->lchild=temp;
-        }
-        
-        if(Rchild!=-1)
-        {
-            TreeNode *temp;
-            temp->data=Rchild;
-            temp->lchild=temp->rchild=nullptr;
-            q.enqueue(temp);
-            p->rchild=temp;
-        }
-    }
+    Tree t;
+    t.CreateTree();
 }
