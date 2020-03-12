@@ -22,7 +22,7 @@ public:
     {
         this->size = size;
         Q = new int[size];
-        front = rear = -1;
+        front = rear = 0;
     }
 
     void enqueue(int x);
@@ -62,13 +62,13 @@ void Queue::display()
     {
         cout<<Q[i]<<" ";
         i=(i+1)%size;
-    } while (i!=(rear)%size);
+    } while (i!=rear%size);
     
 }
 
 int main()
 {
-    Queue q(5);
+    Queue q(6);
 
     q.enqueue(0);
     q.enqueue(1);
@@ -76,7 +76,7 @@ int main()
     q.enqueue(9);
     q.enqueue(7);
     //cout<<q.rear<<" "<<q.front;
-    //q.display();
+    q.display();
     cout<<endl;
     q.dequeue();
 //cout<<q.rear<<" "<<q.front;
