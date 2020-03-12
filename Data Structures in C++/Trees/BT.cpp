@@ -7,6 +7,7 @@ struct TreeNode
     TreeNode *rchild;
     int data;
 };
+TreeNode *root;
 
 class Queue
 {
@@ -14,7 +15,7 @@ private:
     int size;
     int front;
     int rear;
-    struct TreeNode **Q;
+    struct TreeNode* *Q;
 
 public:
     bool isEmpty()
@@ -63,7 +64,6 @@ TreeNode* Queue::dequeue()
 class Tree
 {
 public:
-    TreeNode *root;
     Tree() { root = NULL; }
     void CreateTree();
     void Preorder(TreeNode *p);
@@ -84,7 +84,7 @@ void Tree::CreateTree()
     while (!q.isEmpty())
     {
         p = q.dequeue();
-        printf("eneter left child of %d ", p->data);
+        printf("eneter left child of %d :", p->data);
         scanf("%d", &x);
         if (x != -1)
         {
@@ -94,7 +94,7 @@ void Tree::CreateTree()
             p->lchild = t;
             q.enqueue(t);
         }
-        printf("eneter right child of %d ", p->data);
+        printf("eneter right child of %d :", p->data);
         scanf("%d", &x);
         if (x != -1)
         {
