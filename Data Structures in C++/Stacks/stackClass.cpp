@@ -3,21 +3,22 @@ using namespace std;
 template<class T>
 class Stack
 {
-private:
-T *st;
-int size;
-int top;
-public:
-Stack(){size=10;top=-1;st=new T[size];}
-Stack(int size){this->size=size;top=-1;st=new
-T[this->size];}
-void push(T x);
-T pop();
-T peek(int index);
-int stacktop();
-int isEmpty();
-int isFull();
-void Display();
+    private:
+    T *st;
+    int size;
+    int top;
+
+    public:
+    Stack(){size=10;top=-1;st=new T[size];}
+    Stack(int size){this->size=size;top=-1;st=new T[this->size];}
+
+    void push(T x);
+    T pop();
+    T peek(int index);
+    int stacktop();
+    int isEmpty();
+    int isFull();
+    void Display();
 };
 template<class T>
 void Stack<T>::push(T x)

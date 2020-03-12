@@ -3,18 +3,18 @@ using namespace std;
 
 class Queue
 {
-private:
+public:
     int size;
     int front;
     int rear;
     int *Q;
     bool isEmpty()
     {
-        return ((rear+1)%size == front) ? true : false;
+        return (rear == front) ? true : false;
     }
     bool isFull()
     {
-        return (rear == size - 1) ? true : false;
+        return ((rear+1)%size == front )? true : false;
     }
 
 public:
@@ -22,7 +22,7 @@ public:
     {
         this->size = size;
         Q = new int[size];
-        front = rear = 0;
+        front = rear = -1;
     }
 
     void enqueue(int x);
@@ -33,11 +33,12 @@ public:
 void Queue::enqueue(int x)
 {
     if (isFull())
+        
         cout << "Queue is Full";
     else
     {
-        rear=(rear+1)%size;
         Q[rear] = x;
+        rear=(rear+1)%(size);
     }
 }
 
@@ -48,19 +49,20 @@ int Queue::dequeue()
         printf("Queue is Empty\n");
     else
     {
-        x = Q[front++ + 1];
+        x = Q[front];
+        front=(front+1)%size;
     }
     return x;
 }
 
 void Queue::display()
 {
-    int i=front+1;
+    int i=front;
     do
     {
         cout<<Q[i]<<" ";
         i=(i+1)%size;
-    } while (i!=(rear+1)%size);
+    } while (i!=(rear)%size);
     
 }
 
@@ -73,8 +75,12 @@ int main()
     q.enqueue(9);
     q.enqueue(9);
     q.enqueue(7);
-
+    //cout<<q.rear<<" "<<q.front;
+    //q.display();
+    cout<<endl;
     q.dequeue();
-
+//cout<<q.rear<<" "<<q.front;
     q.display();
+
+
 }

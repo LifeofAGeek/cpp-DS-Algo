@@ -10,9 +10,8 @@ struct TreeNode
 
 class Tree
 {
-    TreeNode *root;
-
 public:
+    TreeNode *root;
     Tree() { root = NULL; }
     void CreateTree();
     void Preorder() { Preorder(root); }
@@ -84,12 +83,12 @@ public:
     Queue(int size)
     {
         this->size = size;
-        Q = new TreeNode *[size];
+        Q = (struct TreeNode **)malloc(size * sizeof(TreeNode *));
         front = rear = -1;
     }
 
-    void enqueue(int x);
-    int dequeue();
+    void enqueue(TreeNode *x);
+    TreeNode* dequeue();
     void display();
 };
 
@@ -115,15 +114,39 @@ TreeNode *Queue::dequeue()
     return x;
 }
 
-void Queue::display()
+void Preorder(struct TreeNode *p)
 {
-    for (int i = front + 1; i <= rear; i++)
-        printf("%d ", Q[i]);
-    printf("\n");
+    if (p)
+    {
+        printf("%d ", p->data);
+        Preorder(p->lchild);
+        Preorder(p->rchild);
+    }
+}
+void Inorder(struct TreeNode *p)
+{
+    if (p)
+    {
+        Inorder(p->lchild);
+        printf("%d ", p->data);
+        Inorder(p->rchild);
+    }
+}
+void Postorder(struct TreeNode *p)
+{
+    if (p)
+    {
+        Postorder(p->lchild);
+        Postorder(p->rchild);
+        printf("%d ", p->data);
+    }
 }
 
 int main()
 {
     Tree t;
     t.CreateTree();
+    Preorder(root);
+    printf("\nPost Order ");
+    Postorder(root);
 }
