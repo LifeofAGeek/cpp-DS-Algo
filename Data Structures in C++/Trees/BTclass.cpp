@@ -20,7 +20,7 @@ void create(struct Queue *q, int size)
 {
     q->size = size;
     q->front = q->rear = 0;
-    q->Q = (struct Node **)malloc(q->size * sizeof(Node *));
+    q->Q = new Node*[q->size];
 }
 void enqueue(struct Queue *q, struct Node *x)
 {
@@ -59,7 +59,7 @@ void Treecreate()
     create(&q, 100);
     printf("Eneter root value ");
     scanf("%d", &x);
-    root = (struct Node *)malloc(sizeof(struct Node));
+    root = new Node;
     root->data = x;
     root->lchild = root->rchild = NULL;
     enqueue(&q, root);

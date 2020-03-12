@@ -8,22 +8,67 @@ struct TreeNode
     int data;
 };
 
+class Queue
+{
+private:
+    int size;
+    int front;
+    int rear;
+    struct TreeNode **Q;
+
+public:
+    bool isEmpty()
+    {
+        return (rear == front) ? true : false;
+    }
+    bool isFull()
+    {
+        return (rear == size - 1) ? true : false;
+    }
+
+    Queue(int size)
+    {
+        this->size = size;
+        Q = new TreeNode*[size];
+        front = rear = -1;
+    }
+
+    void enqueue(TreeNode *x);
+    TreeNode* dequeue();
+};
+
+void Queue::enqueue(TreeNode *x)
+{
+    if (isFull())
+        cout << "Queue is Full";
+    else
+    {
+        Q[++rear] = x;
+    }
+}
+
+TreeNode* Queue::dequeue()
+{
+    TreeNode *x = nullptr;
+    if (isEmpty())
+        printf("Queue is Empty\n");
+    else
+    {
+        x = Q[(front++) + 1];
+    }
+    return x;
+}
+
+
 class Tree
 {
 public:
     TreeNode *root;
     Tree() { root = NULL; }
     void CreateTree();
-    void Preorder() { Preorder(root); }
-    void Preorder(Node *p);
-    void Postorder() { Postorder(root); }
-    void Postorder(Node *p);
-    void Inorder() { Inorder(root); }
-    void Inorder(Node *p);
-    void Levelorder() { Levelorder(root); }
-    void Levelorder(Node *p);
-    int Height() { return Height(root); }
-    int Height(Node *root);
+    void Preorder(TreeNode *p);
+    void Postorder(TreeNode *p);
+    void Inorder(TreeNode *p);
 };
 void Tree::CreateTree()
 {
@@ -62,59 +107,7 @@ void Tree::CreateTree()
     }
 }
 
-class Queue
-{
-private:
-    int size;
-    int front;
-    int rear;
-    int *Q;
-
-public:
-    bool isEmpty()
-    {
-        return (rear == front) ? true : false;
-    }
-    bool isFull()
-    {
-        return (rear == size - 1) ? true : false;
-    }
-
-    Queue(int size)
-    {
-        this->size = size;
-        Q = (struct TreeNode **)malloc(size * sizeof(TreeNode *));
-        front = rear = -1;
-    }
-
-    void enqueue(TreeNode *x);
-    TreeNode* dequeue();
-    void display();
-};
-
-void Queue::enqueue(TreeNode *x)
-{
-    if (isFull())
-        cout << "Queue is Full";
-    else
-    {
-        Q[++rear] = x;
-    }
-}
-
-TreeNode *Queue::dequeue()
-{
-    TreeNode *x = nullptr;
-    if (isEmpty())
-        printf("Queue is Empty\n");
-    else
-    {
-        x = Q[(front++) + 1];
-    }
-    return x;
-}
-
-void Preorder(struct TreeNode *p)
+void Tree::Preorder(TreeNode *p)
 {
     if (p)
     {
@@ -123,7 +116,7 @@ void Preorder(struct TreeNode *p)
         Preorder(p->rchild);
     }
 }
-void Inorder(struct TreeNode *p)
+void Tree::Inorder(TreeNode *p)
 {
     if (p)
     {
@@ -132,7 +125,7 @@ void Inorder(struct TreeNode *p)
         Inorder(p->rchild);
     }
 }
-void Postorder(struct TreeNode *p)
+void Tree::Postorder(TreeNode *p)
 {
     if (p)
     {
@@ -146,7 +139,9 @@ int main()
 {
     Tree t;
     t.CreateTree();
-    Preorder(root);
-    printf("\nPost Order ");
-    Postorder(root);
+    t.Preorder(root);
+    cout<<endl;
+    t.Postorder(root);
+    cout<<endl;
+    t.Inorder(root);
 }
