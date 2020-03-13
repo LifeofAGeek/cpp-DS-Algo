@@ -15,7 +15,7 @@ private:
     int size;
     int front;
     int rear;
-    struct TreeNode* *Q;
+    struct TreeNode **Q;
 
 public:
     bool isEmpty()
@@ -30,12 +30,12 @@ public:
     Queue(int size)
     {
         this->size = size;
-        Q = new TreeNode*[size];
+        Q = new TreeNode *[size];
         front = rear = -1;
     }
 
     void enqueue(TreeNode *x);
-    TreeNode* dequeue();
+    TreeNode *dequeue();
 };
 
 void Queue::enqueue(TreeNode *x)
@@ -48,7 +48,7 @@ void Queue::enqueue(TreeNode *x)
     }
 }
 
-TreeNode* Queue::dequeue()
+TreeNode *Queue::dequeue()
 {
     TreeNode *x = nullptr;
     if (isEmpty())
@@ -59,7 +59,6 @@ TreeNode* Queue::dequeue()
     }
     return x;
 }
-
 
 class Tree
 {
@@ -140,8 +139,8 @@ int main()
     Tree t;
     t.CreateTree();
     t.Preorder(root);
-    cout<<endl;
+    cout << endl;
     t.Postorder(root);
-    cout<<endl;
+    cout << endl;
     t.Inorder(root);
 }
