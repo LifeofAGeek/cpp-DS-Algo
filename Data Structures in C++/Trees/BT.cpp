@@ -74,6 +74,7 @@ public:
     int countNodes(TreeNode *p);
     int countLeafNodes(TreeNode *p);
     int height(TreeNode *p);
+    int MaxSubtreeSum(TreeNode *p);
 };
 void Tree::CreateTree()
 {
@@ -204,6 +205,29 @@ int Tree::countLeafNodes(TreeNode *p)
         return x+y;
     }
     return 0;
+}
+
+int Tree::MaxSubtreeSum(TreeNode *p)
+{
+    int maxi=-1;  
+    map<int,int> m; // map of how many times a particular sum occurs
+    int dfs(TreeNode* p){
+        if(p==NULL) // 
+            return 0;
+        int total=dfs(p->left)+dfs(p->right)+p->val;
+        maxi=max(maxi,++m[total]); // it stores how many times the maximum frequency occured
+        return total; // the total of that tree
+    }
+    vector<int> findFrequentTreeSum(TreeNode *root) {
+        dfs(root); 
+        vector<int>ans;  // final vector array
+        for(auto &i : m){  // map which store the frequency
+            if(i.second==maxi){  
+                ans.push_back(i.first);  // push the ans in the final array
+            }
+        }
+        return ans;  // returning the vector
+    }
 }
 
 int main()
