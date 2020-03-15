@@ -63,17 +63,18 @@ TreeNode *Queue::dequeue()
 class Tree
 {
 public:
+    Queue q(100);
     Tree() { root = NULL; }
     void CreateTree();
     void Preorder(TreeNode *p);
     void Postorder(TreeNode *p);
     void Inorder(TreeNode *p);
+    void levelorder(TreeNode *p);
 };
 void Tree::CreateTree()
 {
     TreeNode *p, *t;
     int x;
-    Queue q(100);
     printf("Eneter root value ");
     scanf("%d", &x);
     root = new TreeNode;
@@ -132,6 +133,13 @@ void Tree::Postorder(TreeNode *p)
         Postorder(p->rchild);
         printf("%d ", p->data);
     }
+}
+
+void Tree::levelorder(TreeNode *p)
+{  
+    cout<<p->data<<" ";
+    q.enqueue(p);
+    
 }
 
 int main()
