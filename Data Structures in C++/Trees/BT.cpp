@@ -70,6 +70,10 @@ public:
     void Postorder(TreeNode *p);
     void Inorder(TreeNode *p);
     void levelorder(TreeNode *p);
+    int NodeSum(TreeNode *p);
+    int countNodes(TreeNode *p);
+    int countLeafNodes(TreeNode *p);
+    int height(TreeNode *p);
 };
 void Tree::CreateTree()
 {
@@ -153,6 +157,19 @@ void Tree::levelorder(TreeNode *p)
             q.enqueue(p->rchild);
         }
     }
+}
+
+int Tree::countNodes(TreeNode *p)
+{
+    if(p){
+        return countNodes(p->lchild)+countNodes(p->rchild)+1;
+    }
+    return 0;
+}
+
+int Tree::height(TreeNode *p)
+{
+    
 }
 
 int main()
