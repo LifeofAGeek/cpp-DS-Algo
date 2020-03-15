@@ -140,20 +140,20 @@ void Tree::Postorder(TreeNode *p)
 }
 
 void Tree::levelorder(TreeNode *p)
-{  
-    cout<<p->data<<" ";
+{
+    cout << p->data << " ";
     q.enqueue(p);
     while (!q.isEmpty())
     {
-        p=q.dequeue();
-        if(p->lchild)
+        p = q.dequeue();
+        if (p->lchild)
         {
-            cout<<p->lchild->data<<" ";
+            cout << p->lchild->data << " ";
             q.enqueue(p->lchild);
         }
-        if(p->rchild)
+        if (p->rchild)
         {
-            cout<<p->rchild->data<<" ";
+            cout << p->rchild->data << " ";
             q.enqueue(p->rchild);
         }
     }
@@ -161,16 +161,36 @@ void Tree::levelorder(TreeNode *p)
 
 int Tree::countNodes(TreeNode *p)
 {
-    if(p){
-        return countNodes(p->lchild)+countNodes(p->rchild)+1;
+    if (p)
+    {
+        return countNodes(p->lchild) + countNodes(p->rchild) + 1;
     }
     return 0;
 }
 
 int Tree::height(TreeNode *p)
 {
-    
+    int x = 0, y = 0;
+    if (root == 0)
+        return 0;
+    x = height(root->lchild);
+    y = height(root->rchild);
+    if (x > y)
+        return x + 1;
+    else
+        return y + 1;
 }
+
+int Tree::NodeSum(TreeNode *p)
+{
+    int x,y;
+    if(p)
+    {
+        return countNodes(p->lchild) + countNodes(p->rchild) + p->data;
+    }
+}
+
+
 
 int main()
 {
