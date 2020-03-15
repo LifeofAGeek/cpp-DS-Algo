@@ -153,7 +153,6 @@ void Tree::levelorder(TreeNode *p)
             q.enqueue(p->rchild);
         }
     }
-    
 }
 
 int main()
