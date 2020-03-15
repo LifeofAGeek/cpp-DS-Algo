@@ -37,6 +37,7 @@ public:
     void enqueue(TreeNode *x);
     TreeNode *dequeue();
 };
+Queue q(100);
 
 void Queue::enqueue(TreeNode *x)
 {
@@ -63,7 +64,6 @@ TreeNode *Queue::dequeue()
 class Tree
 {
 public:
-    Queue q(100);
     Tree() { root = NULL; }
     void CreateTree();
     void Preorder(TreeNode *p);
@@ -139,6 +139,20 @@ void Tree::levelorder(TreeNode *p)
 {  
     cout<<p->data<<" ";
     q.enqueue(p);
+    while (!q.isEmpty())
+    {
+        p=q.dequeue();
+        if(p->lchild)
+        {
+            cout<<p->lchild->data<<" ";
+            q.enqueue(p->lchild);
+        }
+        if(p->rchild)
+        {
+            cout<<p->rchild->data<<" ";
+            q.enqueue(p->rchild);
+        }
+    }
     
 }
 
@@ -151,4 +165,6 @@ int main()
     t.Postorder(root);
     cout << endl;
     t.Inorder(root);
+    cout << endl;
+    t.levelorder(root);
 }
