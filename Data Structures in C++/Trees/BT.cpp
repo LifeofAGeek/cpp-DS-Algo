@@ -190,7 +190,21 @@ int Tree::NodeSum(TreeNode *p)
     }
 }
 
-
+int Tree::countLeafNodes(TreeNode *p)
+{
+    int x,y;
+    if(p)
+    {
+        x=countLeafNodes(p->lchild);
+        y=countLeafNodes(p->rchild);
+        if(!p->lchild && !p->rchild)
+        {
+            return x+y+1;
+        }
+        return x+y;
+    }
+    return 0;
+}
 
 int main()
 {
