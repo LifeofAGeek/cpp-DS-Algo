@@ -60,6 +60,7 @@ int Queue::dequeue()
         x=t->data;
         front=front->next;
         delete(t);
+        size--;
     }
     else
     {
@@ -78,4 +79,12 @@ void Queue::display()
     }
 }
 
-int
+int main()
+{
+    Queue q;
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.dequeue();
+    q.display();
+}
