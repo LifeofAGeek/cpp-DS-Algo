@@ -1,6 +1,8 @@
 // BST Insert, search and Delete
-#include <stdio.h>
-#include <stdlib.h>
+
+#include<bits/stdc++.h>
+using namespace std;
+
 struct Node
 {
     struct Node *lchild;
