@@ -1,106 +1,81 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-struct TreeNode
+// BST Insert and Search
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
 {
-    TreeNode *lchild;
-    TreeNode *rchild;
+    Node *lchild;
     int data;
-};
-TreeNode *root;
+    Node *rchild;
+} *root = NULL;
 
-class Queue
+void Insert(int key)
 {
-private:
-    int size;
-    int front;
-    int rear;
-    struct TreeNode **Q;
-
-public:
-    bool isEmpty()
+    Node *t = root;
+    Node *r = NULL, *p;
+    if (root == NULL)
     {
-        return (rear == front) ? true : false;
+        p = new Node;
+        p->data = key;
+        p->lchild = p->rchild = NULL;
+        root = p;
+        return;
     }
-    bool isFull()
+    while (t != NULL)
     {
-        return (rear == size - 1) ? true : false;
+        r = t;
+        if (key < t->data)
+            t = t->lchild;
+        else if (key > t->data)
+            t = t->rchild;
+        else
+            return;
     }
-
-    Queue(int size)
-    {
-        this->size = size;
-        Q = new TreeNode *[size];
-        front = rear = -1;
-    }
-
-    void enqueue(TreeNode *x);
-    TreeNode *dequeue();
-};
-Queue q(100);
-
-void Queue::enqueue(TreeNode *x)
-{
-    if (isFull())
-        cout << "Queue is Full";
+    p = (struct Node *)malloc(sizeof(struct Node));
+    p->data = key;
+    p->lchild = p->rchild = NULL;
+    if (key < r->data)
+        r->lchild = p;
     else
+        r->rchild = p;
+}
+void Inorder(struct Node *p)
+{
+    if (p)
     {
-        Q[++rear] = x;
+        Inorder(p->lchild);
+        printf("%d ", p->data);
+        Inorder(p->rchild);
     }
 }
-
-TreeNode *Queue::dequeue()
+struct Node *Search(int key)
 {
-    TreeNode *x = nullptr;
-    if (isEmpty())
-        printf("Queue is Empty\n");
-    else
+    struct Node *t = root;
+    while (t != NULL)
     {
-        x = Q[(front++) + 1];
+        if (key == t->data)
+            return t;
+        else if (key < t->data)
+            t = t->lchild;
+        else
+            t = t->rchild;
     }
-    return x;
+    return NULL;
 }
-
-class Tree
+int main()
 {
-public:
-    Tree() { root = NULL; }
-    void CreateTree();
-    void Inorder(TreeNode *p);
-};
-
-void Tree::CreateTree()
-{
-    TreeNode *p, *t;
-    int x;
-    printf("Eneter root value ");
-    scanf("%d", &x);
-    root = new TreeNode;
-    root->data = x;
-    root->lchild = root->rchild = NULL;
-    q.enqueue(root);
-    while (!q.isEmpty())
-    {
-        p = q.dequeue();
-        printf("eneter left child of %d :", p->data);
-        scanf("%d", &x);
-        if (x != -1)
-        {
-            t = new TreeNode;
-            t->data = x;
-            t->lchild = t->rchild = NULL;
-            p->lchild = t;
-            q.enqueue(t);
-        }
-        printf("eneter right child of %d :", p->data);
-        scanf("%d", &x);
-        if (x != -1)
-        {
-            t = new TreeNode;
-            t->data = x;
-            t->lchild = t->rchild = NULL;
-            p->rchild = t;
-            q.enqueue(t);
-        }
-    }
+    struct Node *temp;
+    root = RInsert(root, 50);
+    RInsert(root, 10);
+    RInsert(root, 40);
+    RInsert(root, 20);
+    RInsert(root, 30);
+    Delete(root, 30);
+    Inorder(root);
+    printf("\n");
+    temp = Search(20);
+    if (temp != NULL)
+        printf("element %d is found\n", temp->data);
+    else
+        printf("element is not found\n");
+    return 0;
 }
