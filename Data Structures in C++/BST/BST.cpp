@@ -5,18 +5,18 @@ using namespace std;
 
 struct Node
 {
-    struct Node *lchild;
+    Node *lchild;
     int data;
-    struct Node *rchild;
+    Node *rchild;
 } *root = NULL;
 
 void Insert(int key)
 {
-    struct Node *t = root;
-    struct Node *r = NULL, *p;
+    Node *t = root;
+    Node *r = NULL, *p;
     if (root == NULL)
     {
-        p = (struct Node *)malloc(sizeof(struct Node));
+        p = (Node *)malloc(sizeof(Node));
         p->data = key;
         p->lchild = p->rchild = NULL;
         root = p;
@@ -32,7 +32,7 @@ void Insert(int key)
         else
             return;
     }
-    p = (struct Node *)malloc(sizeof(struct Node));
+    p = (Node *)malloc(sizeof(Node));
     p->data = key;
     p->lchild = p->rchild = NULL;
     if (key < r->data)
@@ -41,7 +41,7 @@ void Insert(int key)
         r->rchild = p;
 }
 
-void Inorder(struct Node *p)
+void Inorder(Node *p)
 {
     if (p)
     {
@@ -51,9 +51,9 @@ void Inorder(struct Node *p)
     }
 }
 
-struct Node *Search(int key)
+Node *Search(int key)
 {
-    struct Node *t = root;
+    Node *t = root;
     while (t != NULL)
     {
         if (key == t->data)
@@ -66,12 +66,12 @@ struct Node *Search(int key)
     return NULL;
 }
 
-struct Node *RInsert(struct Node *p, int key) //Recursive Insert
+Node *RInsert(Node *p, int key) //Recursive Insert
 {
-    static struct Node *t = NULL;
+    static Node *t = NULL;
     if (p == NULL)
     {
-        t = (struct Node *)malloc(sizeof(struct Node));
+        t = (Node *)malloc(sizeof(Node));
         t->data = key;
         t->lchild = t->rchild = NULL;
         return t;
@@ -83,7 +83,7 @@ struct Node *RInsert(struct Node *p, int key) //Recursive Insert
     return p;
 }
 
-int Height(struct Node *p)
+int Height(Node *p)
 {
     int x, y;
     if (p == NULL)
@@ -93,23 +93,23 @@ int Height(struct Node *p)
     return x > y ? x + 1 : y + 1;
 }
 
-struct Node *InPre(struct Node *p)
+Node *InPre(Node *p)
 {
     while (p && p->rchild != NULL)
         p = p->rchild;
     return p;
 }
 
-struct Node *InSucc(struct Node *p)
+Node *InSucc(Node *p)
 {
     while (p && p->lchild != NULL)
         p = p->lchild;
     return p;
 }
 
-struct Node *Delete(struct Node *p, int key)
+Node *Delete(Node *p, int key) //recursively
 {
-    struct Node *q;
+    Node *q;
     if (p == NULL)
         return NULL;
     if (p->lchild == NULL && p->rchild == NULL)
@@ -151,7 +151,7 @@ Node* Rsearch(Node *t, int x)
 
 int main()
 {
-    struct Node *temp;
+    Node *temp;
     root = RInsert(root, 50);
     Insert(10);
     Insert(40);
