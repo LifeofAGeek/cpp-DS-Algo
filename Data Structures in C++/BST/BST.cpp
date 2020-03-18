@@ -18,7 +18,7 @@ void Insert(int key)
         p->data = key;
         p->lchild = p->rchild = NULL;
         root = p;
-        return t;
+        return;
     }
     while (t != NULL)
     {
@@ -158,7 +158,7 @@ int main()
     Delete(root, 30);
     Inorder(root);
     printf("\n");
-    temp = Search(60);
+    temp = Rsearch(root,10);
     if (temp != NULL)
         printf("element %d is found\n", temp->data);
     else
