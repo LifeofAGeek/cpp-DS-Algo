@@ -139,6 +139,14 @@ struct Node *Delete(struct Node *p, int key)
     return p;
 }
 
+Node* Rsearch(Node *t, int x)
+{
+    if (t==NULL) return NULL;
+    if (t->data==x) return t;
+    else if (x < t->data) return Rsearch(t->lchild,x);
+    else return Rsearch(t->rchild,x);
+}
+
 int main()
 {
     struct Node *temp;
