@@ -54,7 +54,28 @@ TreeNode *LRRotation(TreeNode *p)
 
     if(root==p)
     {
-        
+        root=plr;
+    }
+    return plr;
+}
+
+TreeNode *RRRotation(TreeNode *p)
+{
+    return NULL;
+}
+
+TreeNode *RLRotation(TreeNode *p)
+{
+    return NULL;
+}
+
+void Inorder(TreeNode *p)
+{
+    if (p)
+    {
+        Inorder(p->lchild);
+        printf("%d ", p->data);
+        Inorder(p->rchild);
     }
 }
 
@@ -85,4 +106,12 @@ TreeNode *RInsert(TreeNode *p, int key) //Recursive Insert
         return RLRotation(p);
 
     return p;
+}
+
+int main()
+{
+    root=RInsert(root,30);
+    RInsert(root,10);
+    RInsert(root,20);
+    Inorder(root);
 }
