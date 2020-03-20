@@ -27,6 +27,37 @@ int BalanceFactor(TreeNode *p)
     return hl - hr;
 }
 
+TreeNode *LLRotation(TreeNode *p)
+{
+    TreeNode *pl = p->lchild, *plr = pl->rchild;
+    pl->rchild = p;
+    p->lchild = plr;
+    p->height = NodeHeight(p);
+    pl->height = NodeHeight(pl);
+    if (root == p)
+        root = pl;
+    return pl;
+}
+
+TreeNode *LRRotation(TreeNode *p)
+{
+    TreeNode *pl=p->lchild, *plr=pl->rchild;
+    pl->rchild=plr->lchild;
+    p->lchild=plr->rchild;
+
+    plr->lchild=pl;
+    plr->rchild=p;
+
+    pl->height=NodeHeight(pl);
+    p->height=NodeHeight(p);
+    plr->height=NodeHeight(plr);
+
+    if(root==p)
+    {
+        
+    }
+}
+
 TreeNode *RInsert(TreeNode *p, int key) //Recursive Insert
 {
     static TreeNode *t = NULL;
@@ -52,6 +83,6 @@ TreeNode *RInsert(TreeNode *p, int key) //Recursive Insert
         return RRRotation(p);
     else if (BalanceFactor(p) == -2 && BalanceFactor(p->rchild) == 1)
         return RLRotation(p);
-        
+
     return p;
 }
