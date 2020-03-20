@@ -11,14 +11,20 @@ struct TreeNode
     int height;
 }*root=NULL;
 
-int Height(Node *p)
+int NodeHeight(TreeNode *p)
 {
-    int x, y;
-    if (p == NULL)
-        return 0;
-    x = Height(p->lchild);
-    y = Height(p->rchild);
-    return x > y ? x + 1 : y + 1;
+    int hl, hr;
+    hl = p && p->lchild?(p->lchild->height):0;
+    hr = p && p->rchild?(p->rchild->height):0;
+    return hl > hr ? hl + 1 : hr + 1;
+}
+
+int BalanceFactor(TreeNode *p)
+{
+    int hl, hr;
+    hl = p && p->lchild?(p->lchild->height):0;
+    hr = p && p->rchild?(p->rchild->height):0;
+    return hl-hr;
 }
 
 TreeNode *RInsert(TreeNode *p, int key) //Recursive Insert
@@ -35,5 +41,7 @@ TreeNode *RInsert(TreeNode *p, int key) //Recursive Insert
         p->lchild = RInsert(p->lchild, key);
     else if (key > p->data)
         p->rchild = RInsert(p->rchild, key);
+    
+    p->height=NodeHeight(p);
     return p;
 }
