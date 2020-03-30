@@ -73,8 +73,7 @@ void MinHeap::insertKey(int k)
 	} 
 } 
 
-// Decreases value of key at index 'i' to new_val. It is assumed that 
-// new_val is smaller than harr[i]. 
+// Decreases value of key at index 'i' to new_val. It is assumed that new_val is smaller than harr[i]. 
 void MinHeap::decreaseKey(int i, int new_val) 
 { 
 	harr[i] = new_val; 
@@ -151,8 +150,8 @@ int main()
 	h.insertKey(5); 
 	h.insertKey(4); 
 	h.insertKey(45); 
-	cout << h.extractMin() << " "; 
-	cout << h.getMin() << " "; 
+	cout << h.extractMin() << endl; 
+	cout << h.getMin() << endl; 
 	h.decreaseKey(2, 1); 
 	cout << h.getMin(); 
 	return 0; 
