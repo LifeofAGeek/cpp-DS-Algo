@@ -38,14 +38,41 @@ void Sortedinsert(Node **H, int x)
     }
 }
 
-Node *Search(struct Node *p,int key)
+Node *Search(Node *p, int key)
 {
-while(p!=NULL)
+    while (p != NULL)
+    {
+        if (key == p->data)
+        {
+            return p;
+        }
+        p = p->next;
+    }
+    return NULL;
+}
+
+int hashf(int key)
 {
-if(key==p->data){
-return p;
+    return key % 10;
 }
-p=p->next;
+
+void Insert(struct Node *H[], int key)
+{
+    int index = hashf(key);
+    Sortedinsert(&H[index], key);
 }
-return NULL;
+
+int main()
+{
+    struct Node *HT[10];
+    struct Node *temp;
+    int i;
+    for (i = 0; i < 10; i++)
+        HT[i] = NULL;
+    Insert(HT, 12);
+    Insert(HT, 22);
+    Insert(HT, 42);
+    temp = Search(HT[hashf(22)], 22);
+    printf("%d ", temp->data);
+    return 0;
 }
