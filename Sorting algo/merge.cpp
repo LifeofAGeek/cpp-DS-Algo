@@ -1,72 +1,53 @@
-#include<bits/stdc++.h>
-using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
 
-int display(int arr[])
+void merge(int *a, int *l, int nL, int *r, int nR)
 {
-    int n=sizeof(arr)/sizeof(arr[0]);
-    for(int i=0;i<n;i++)
-        cout<<arr[i]<<endl;
-}
-
-int Merge(int L[], int R[], int A[])
-{
-    int nL=sizeof(L)/sizeof(L[0]);
-    int nR=sizeof(R)/sizeof(R[0]);
-    int n=sizeof(A)/sizeof(A[0]);
+    // int nL = sizeof(l)/sizeof(int);
+    // int nR = sizeof(r)/sizeof(int);
     int i=0,j=0,k=0;
-
-    while(i<nL && j<nR)
+    while(i < nL && j < nR)
     {
-        if(L[i]<=R[j])
-           {
-            A[k]=L[i];
-            i++;
-           }
+        if(l[i] < r[j])
+            a[k++] = l[i++];
         else
-           {
-            A[k]=R[j];
-            j++;
-           }
-        k++;
+            a[k++] = r[j++];
     }
-
-    while(i<nL)
-        A[k]=L[i];
-        k++;
-        i++;
-
-    while(j<=nR)
-        A[k]=R[j];
-        k++;
-        j++;
+    while(i < nL)
+    {
+        a[k++] = l[i++];
+    }
+    while(j < nR)
+    {
+        a[k++] = r[j++];
+    }
 }
 
-int MergeSort(int A[])
+void mergesort(int *a, int len)
 {
-    int n=sizeof(A)/sizeof(A[0]);
-    int mid=n/2;
-    int left[mid],right[n-mid];
-
-    if(n==1){
-        return 0;
-    }
-
+    if(len<2)
+        return;
+    int mid = len/2;
+    int *left = (int *)malloc(mid*sizeof(int));
+    int *right = (int *)malloc(sizeof(int)*(len-mid));
     for(int i=0;i<mid;i++)
-        left[i]=A[i];
-    for(int i=mid;i<n;i++)
-        right[i]=A[i];
-
-    MergeSort(left);
-    MergeSort(right);
-    Merge(left,right,A);
+        left[i] = a[i];
+    for(int i=mid;i<len;i++)
+        right[i-mid] = a[i];
+    mergesort(left, mid);
+    mergesort(right, len-mid);
+    merge(a, left, mid, right, len-mid);
 }
-
-
 
 int main()
 {
-    int A[]={2,5,31,22,9,74,11};
-    MergeSort(A);
-    display(A);
+    int a[] = {2,4,1,6,8,5,3,7};
+    printf("Original Array:\n");
+    for (int i = 0; i < 8; i++)
+    	printf("%d ", a[i]);
+    printf("\n");
+    mergesort(a, 8);
+    for(int i = 0; i < 8; i++)
+        printf("%d ", a[i]);
+    printf("\n");
 }
-
