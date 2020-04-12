@@ -1,2 +1,2 @@
 # cpp-DS-Algo
-Contains c++ files that cover basics of c++, Data structures and concepts of Algorithms.
+This is the code repository for C++ Data Structures and Algorithms. They may be less efficient than the implementation in the standard library.
