@@ -123,10 +123,37 @@ void BE(int base, int power, int mod=1e9+7) //Modular Exponentiation -> mod valu
     cout<<"Computed value is = "<<ans<<endl;
 }
 
+//------------------------------------------------------------------------------------------------//
+
+//Prime Factorization using Sieve in O(log(N))
+void sieve_prime_fact(int n)
+{
+    int spf[n+1]; //smallest prime factors array
+    spf[0]=spf[1]=0;
+    for(int i=2;i<=n;i++) spf[i]=1;
+  
+    for (int i=2; i<=n; i++) 
+    { 
+        if (spf[i]==1) 
+        { 
+            for (int j=i; j<=n; j+=i) 
+                spf[j]=i; 
+        } 
+    } 
+        
+    while (n!=1)
+    {
+        cout<<spf[n]<<" ";
+         n=n/spf[n];
+     }
+}
+
+//uncomment the function calls then run
 int main()
 {
     //cout<<primality_test(5)<<endl;
     //SieveOfEratosthenes(15);
     //Prime_factors(26);
-    BE(2,13);
+    //BE(2,13);
+    //sieve_prime_fact(12246);
 }
