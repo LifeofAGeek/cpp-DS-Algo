@@ -27,10 +27,11 @@ void count_set_bits(int a)
     cout<<"set bits = "<<c<<endl;
 }
 
+
+
 int main()
 {
     LRshifts(14,7);
     check_set(14,0);
-    count_set_bits(15);
-    
+    count_set_bits(5);
 }
