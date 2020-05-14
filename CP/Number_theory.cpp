@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//-----------------------------------------------------------------------------------------------//
+
 //primality test is to determine whether the input integer is a prime num or not.
 string primality_test(int N)
 {
@@ -28,6 +30,7 @@ string primality_test(int N)
 
 }
 
+//---------------------------------------------------------------------------------------------------------//
 
 /*
 This is another primality test technique -> Sieve of Eratosthenes,
@@ -58,6 +61,8 @@ void SieveOfEratosthenes(int n)
 }
 
 
+//--------------------------------------------------------------------------------------------//
+
 //Prime Factorization in O(sqrt(N))
 //eg., N=100 -> 2^2 * 5^2
 void Prime_factors(int n)
@@ -80,13 +85,48 @@ void Prime_factors(int n)
     }
     */
 
+    //Optimized approach
+    //If N is composite, then there is atlest 1 prime divisor of N below sqrt(N).
+    cout<<"Prime factors of "<<n<<" are:"<<endl;
+    for(int i=2;i*i<=n;i++)
+    {
+        if(n%i==0)
+        {
+            int c=0;
+            while(n%i==0)
+            c++ , n/=i;
+            cout<<i<<"^"<<c<<endl;
+        }
+    }
+    if(n>1) cout<<n<<"^"<<1<<endl;
+}
 
+//----------------------------------------------------------------------------------------------//
+
+/*
+Binary Exponentiation (BE)
+a^n is O(logn) time
+why BE ? -> for big power value such as 2^13 -> O(n) approach will give TLE
+thus using BE we can calculate the same in log(2^13) time.
+*/
+
+void BE(int base, int power, int mod=1e9+7) //Modular Exponentiation -> mod value
+{
+    int ans=1;
+    while (power)
+    {
+        if(power%2)
+        ans=(ans*base)%mod , power--;
+        else
+        base=(base*base)%mod , power/=2;
+    }
+    cout<<"Computed value is = "<<ans<<endl;
 }
 
 int main()
 {
-    cout<<primality_test(5)<<endl;
-    SieveOfEratosthenes(15);
-    Prime_factors(100);
-
+    //cout<<primality_test(5)<<endl;
+    //SieveOfEratosthenes(15);
+    //Prime_factors(26);
+    BE(2,13);
 }
