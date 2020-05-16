@@ -11,7 +11,7 @@ int main()
     int i=0,d;
     cin>>d;
     while(i<=5){ //left rotation by d in O(n) time 
-        if(d%6==0) d%=6;
+        if(d%n==0) d%=n;
         temp[i]=arr[d];
         if(d==(n-1-d)) break;
         i++, d++;
