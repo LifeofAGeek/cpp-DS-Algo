@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define ll long long int 
+vector<int> Prime; 
 
 //-----------------------------------------------------------------------------------------------//
 
@@ -39,7 +41,7 @@ where N is not more than 10^7.
 The running time complexity of this algorithm is O(Nlog(logN)).
 The Space Complexity of this algorithm is O(N)
 */
-void SieveOfEratosthenes(int n) 
+vector<int> SieveOfEratosthenes(int n) 
 { 
     int prime[n+1]; 
     prime[0]=prime[1]=0;
@@ -55,8 +57,32 @@ void SieveOfEratosthenes(int n)
     } 
 
     for (int p=2; p<=n; p++) 
-       if (prime[p]) 
-          cout << p << " "; 
+       if (prime[p]) {
+            Prime.push_back(p);
+            //cout << p << " "; 
+       }
+    cout<<endl;
+    return Prime;
+}
+
+//--------------------------------------------------------------------------------------------//
+
+void segmented_sieve(ll l, ll u)
+{
+    vector<int> prime = SieveOfEratosthenes(sqrt(u));
+    int size=u-l+1;
+    int arr[size];
+    for(int i=0;i<size;i++) arr[i]=1;
+    for(auto p:prime){
+        for(ll j=l;j<=u;j++)
+        {
+            if(j==p) continue;
+            if(j%p==0) arr[j-l]=0;
+        }
+    }
+    for(int i=0;i<size;i++){
+        if(arr[i]) cout<<i+l<<" ";
+    }
     cout<<endl;
 }
 
@@ -155,5 +181,6 @@ int main()
     //SieveOfEratosthenes(15);
     //Prime_factors(26);
     //BE(2,13);
-    //sieve_prime_fact(12246);
+    //sieve_prime_fact(24);
+    segmented_sieve(51,100);
 }
