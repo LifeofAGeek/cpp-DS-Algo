@@ -59,7 +59,7 @@ vector<int> SieveOfEratosthenes(int n)
     for (int p=2; p<=n; p++) 
        if (prime[p]) {
             Prime.push_back(p);
-            //cout << p << " "; 
+            cout << p << " "; 
        }
     cout<<endl;
     return Prime;
