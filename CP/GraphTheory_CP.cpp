@@ -21,9 +21,14 @@ int countCC(vector<int> g[], vector<bool> vis) //count conected components
     return c;
 }
 
-void SSSP(vector<int> g[], vector<bool> vis){ //Single Source Shortest Path(On Tree)
-    vector<int> dist(vis.size(),0); 
-    
+void SSSP(vector<int> g[], vector<bool> &vis, vector<int> &dist, int s, int l=0) //Single Source Shortest Path(On Tree)
+{ 
+    vis[s]=true;
+    dist[s]=l;
+    for(int u:g[s]){
+        if(!vis[u]) SSSP(g, vis, dist , u, dist[s]+1);
+    }
+
 }
 
 int main()
@@ -39,7 +44,9 @@ int main()
         g[v].push_back(u);
     }
     vector<bool> vis(N+1,false);
-    
+    vector<int> dist(N+1,0);
+    SSSP(g,vis,dist,2,0);
+    for(int i=1;i<=N;i++) cout<<dist[i]<<" ";
     //cout<<countCC(g,vis)<<endl;
-    dfs(1,vis,g);
+    //dfs(1,vis,g);
 }
