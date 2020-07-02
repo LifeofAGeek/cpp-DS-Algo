@@ -21,17 +21,16 @@ void dfs(int v, vector<bool> &vis, vector<int> adj[])
 
 int main()
 {
-    int n; // no. of vertex
-    cin>>n;
+    int n,E; // no. of vertex and edges
+    cin>>n>>E;
     vector<int> adj[n]; // graph represented as an adjacency list
     vector<bool> vis(n,false);
-    addEdge(adj, 0, 1); 
-    addEdge(adj, 0, 4); 
-    addEdge(adj, 1, 2); 
-    addEdge(adj, 1, 3); 
-    addEdge(adj, 1, 4); 
-    addEdge(adj, 2, 3); 
-    addEdge(adj, 3, 4);
+    for(int i=0; i<E;i++){
+        int u,v;
+        cin>>u>>v; //u--; v--;
+        addEdge(adj, u, v); 
+    }
+
     dfs(3,vis,adj);
     cout << endl;
 }
