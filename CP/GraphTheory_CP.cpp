@@ -45,7 +45,6 @@ void SSSP(int s, int l=0) //Single Source Shortest Path(On Tree)
     for(int u:g[s]){
         if(!vis[u]) SSSP(u, dist[s]+1);
     }
-
 }
 
 int main()
@@ -60,10 +59,10 @@ int main()
     }
     
     
-    SSSP(1,0);
-    print(dist);
-    cout<<endl;
-    //cout<<"No. of Connected components are "<<countCC(N)<<endl;
-    clear();
-    dfs(1);
+    // SSSP(1,0);
+    // print(dist);
+    // cout<<endl;
+    // cout<<"No. of Connected components are "<<countCC(N)<<endl;
+    // clear();
+    // dfs(1);
 }
