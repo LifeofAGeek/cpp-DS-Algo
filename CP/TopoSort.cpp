@@ -11,8 +11,8 @@ void addEdge(int u, int v)
 }
 
 void toposort(int n)
-{                    // n -> # of vertex
-    queue<int> zero; //queue to store nodes of zero degree
+{
+    priority_queue<int, vector<int>, greater<int>> zero; //queue to store nodes of zero degree lexographically
     for (int i = 1; i <= n; i++)
     {
         if (indeg[i] == 0)
@@ -21,13 +21,13 @@ void toposort(int n)
 
     while (!zero.empty())
     {
-        int curr = zero.front();
-        order.push_back(curr); //push the current node 
+        int curr = zero.top();
+        order.push_back(curr); //push the current node
         zero.pop();
 
         for (int node : adj[curr])
         {
-            indeg[node]--; //if any node now have zero in-degree 
+            indeg[node]--;        //if any node now have zero in-degree
             if (indeg[node] == 0) //after removing the current node
                 zero.push(node);
         }
@@ -36,14 +36,18 @@ void toposort(int n)
 
 int main()
 {
-    int v, e, x, y;
+    int v, e, x, y; // v -> # of nodes , e -> # of edges
     cin >> v >> e;
     for (int i = 1; i <= e; i++)
     {
         cin >> x >> y;
-        addEdge(x, y);
+        addEdge(x, y); // x -> y
         indeg[y]++;
     }
     toposort(v); //assuming it Acyclic Graph (No cycles in it)
-    for(auto a:order) cout<<a<<" ";
+    if (order.size() < v)
+        cout << "It's Cyclic Graph" << endl;
+    else
+        for (auto a : order)
+            cout << a << " ";
 }
