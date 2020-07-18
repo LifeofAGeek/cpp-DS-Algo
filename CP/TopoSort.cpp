@@ -46,7 +46,7 @@ int main()
     }
     toposort(v); //assuming it Acyclic Graph (No cycles in it)
     if (order.size() < v)
-        cout << "It's Cyclic Graph" << endl;
+        cout << "It's a Cyclic Graph" << endl;
     else
         for (auto a : order)
             cout << a << " ";
