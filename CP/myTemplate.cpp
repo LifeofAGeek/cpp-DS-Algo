@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define endl "\n"
 #define int long long
 #define vec(x) vector<x>
 #define pb push_back
@@ -9,6 +8,7 @@ using namespace std;
 #define vi vector<int>
 #define vii vector<pair<int,int>>
 #define umpii unordered_map<int,int>
+#define mpii map<int,int>
 #define matrix(x) vector<vector<x>>
 #define all(v) v.begin(),v.end()
 #define mem(a,b) memset(a, b, sizeof a)
@@ -29,9 +29,11 @@ int dir[]={-1, 0, 1, 0, -1};
 int dx[]={1,1,0,-1,-1,-1, 0, 1};
 int dy[]={0,1,1, 1, 0,-1,-1,-1};
 
+//-------------------------------------------------------------------------------------------------//
+
 void solve()
 {
-	
+	//code goes here
 }
 
 int32_t main()
