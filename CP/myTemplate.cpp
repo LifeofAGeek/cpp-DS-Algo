@@ -1,8 +1,9 @@
+//Author - Anubhav Sethi
 #include <bits/stdc++.h>
 using namespace std;
-
 #define int long long
 #define vec(x) vector<x>
+#define FASTIO ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 #define pb push_back
 #define pii pair<int,int>
 #define vi vector<int>
@@ -16,7 +17,10 @@ using namespace std;
 #define prec(n) fixed<<setprecision(n)
 #define ff first
 #define ss second
-#define print(x) for(auto it:x) cout<<it<<" ";
+#define for(i,start,end) for(int i=start;i<end;i++)
+#define in(x) cin>>x;
+#define print(x) cout<<x<<" ";
+#define printArr(x) for(auto it:x) cout<<it<<" ";
 #define dbg(x) cerr<<#x<<" :: "<<x<<endl;
 #define dbg2(x,y) cerr<<#x<<" :: "<<x<<"\t"<<#y<<" :: "<<y<<endl;
 const int INF = 1e9;
@@ -34,14 +38,15 @@ int dy[]={0,1,1, 1, 0,-1,-1,-1};
 void solve()
 {
 	//code goes here
+
 }
 
 int32_t main()
 {
-	ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+	FASTIO;
 	int t;
 	t=1;
-	cin>>t;
+	//cin>>t;
 	while(t--)
 		solve();
 }
