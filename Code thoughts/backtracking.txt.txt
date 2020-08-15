@@ -1,0 +1,2 @@
+When you are confused, rewind the things and analyse it. How it's solved and then restart your journey.
+-backtracking
