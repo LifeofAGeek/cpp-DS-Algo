@@ -28,7 +28,7 @@ void solve(){
     for(auto &a:arr) cin>>a;
     memset(dp,-1,sizeof(dp));
     bool ans=helper(arr,sum,n);
-    cout<<ans<<endl;
+    cout<<(ans==1?"YES":"NO")<<endl;
 }
 
 
