@@ -15,8 +15,6 @@ int subsetsum(vector<int> nums, int target)
             for(int i=0;i<nums.size();i++) cout<<dp[i]<<" ";
             cout<<endl;
         }
-        // for(int i=0;i<nums.size();i++) cout<<dp[i]<<" ";
-        // cout<<endl;
     }
 
     return dp[target];
