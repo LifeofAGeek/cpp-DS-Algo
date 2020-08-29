@@ -16,7 +16,6 @@ void solve(){
         int r=n;
         while(r!=l+1){
             int mid=l+(r-l)/2;
-            cout<<mid<<" "<<l<<" "<<r<<endl;
             if(arr[mid]<=x) l=mid;
             else r=mid;
         }
