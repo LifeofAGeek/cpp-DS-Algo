@@ -1,54 +1,48 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ld long double
+#define int long long
 
-vector<int> x, v;
-int n;
+vector<int> c;
+int n, d;
 
 bool good(ld t)
 {   
-    ld mini = INT_MAX, maxi = INT_MIN;
-    for(int i=0;i<n;i++)
+    ld curr_available=c[0]+t;
+    for(int i=1;i<n;i++)
     {
-        ld a = x[i] - t*v[i];
-        ld b = x[i] + t*v[i];
-        mini = min(mini, b);
-        maxi = max(maxi, a);
+       if(curr_available>c[i]+d){
+           return false;
+       }
+       curr_available=max(curr_available,(ld)c[i])+t;
     }
-    if(maxi<=mini)
-        return 1;
-    return 0;
+    return true;
 }
 
 void solve(){
     //code goes here
-    cin>>n;
-    x.resize(n);
-    v.resize(n);
+    cin>>n>>d;
+    c.resize(n);
     for(int i=0;i<n;i++){
-        int a,b;
-        cin>>a>>b;
-        x[i]=a;
-        v[i]=b;
+        cin>>c[i];
     }
-
+    sort(c.begin(),c.end());
     ld l=0.0;
-    ld r=1e9;
-    ld m;
-    cout<<setprecision(20);
+    ld r=1e10;
     for(int i=0;i<100;i++){
-        m=l+(r-l)/2;
+        ld m=(r+l)/2;
         int check=good(m);
-        if(check) r=m;
-        else l=m;
+        if(check) l=m;
+        else r=m;
     }
-    cout<<r;
+    cout<<fixed<<setprecision(6);
+    cout<<l<<endl;
 }
 
 int32_t main()
 {
     int t=1;
-    // cin>>t;
+    cin>>t;
     while (t--)
     {
         solve();

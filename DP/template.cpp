@@ -1,54 +1,64 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ld long double
-
-vector<int> x, v;
-int n;
-
-bool good(ld t)
-{   
-    ld mini = INT_MAX, maxi = INT_MIN;
-    for(int i=0;i<n;i++)
-    {
-        ld a = x[i] - t*v[i];
-        ld b = x[i] + t*v[i];
-        mini = min(mini, b);
-        maxi = max(maxi, a);
-    }
-    if(maxi<=mini)
-        return 1;
-    return 0;
-}
+#define int long long
+const int m =1e9+7;
 
 void solve(){
     //code goes here
+    int n;
     cin>>n;
-    x.resize(n);
-    v.resize(n);
-    for(int i=0;i<n;i++){
-        int a,b;
-        cin>>a>>b;
-        x[i]=a;
-        v[i]=b;
+    int arr[n];
+    int ones=0, zeros=0;
+    for(auto &a:arr) {
+        cin>>a; 
+        if(a==1) ones++;
+        else zeros++;
     }
 
-    ld l=0.0;
-    ld r=1e9;
-    ld m;
-    cout<<setprecision(20);
-    for(int i=0;i<100;i++){
-        m=l+(r-l)/2;
-        int check=good(m);
-        if(check) r=m;
-        else l=m;
+    if(ones==n){
+        cout<<"No\n";
+        return;
     }
-    cout<<r;
+    if(ones==n-1){
+        cout<<"Yes\n";
+        return;
+    }
+
+    vector<int> seg;
+    int c=0;
+    for(int i=1;i<n;i++){
+        if(arr[i]==0){
+            c++;
+            continue;
+        }
+        else{
+            if(c!=0) seg.push_back(c);
+            c=0;
+        }
+    }
+
+    sort(seg.begin(),seg.end());
+
+    //for(auto a:seg) cout<<a<<" ";
+    int sz=seg.size();
+    if(sz>=2){
+        int mx1=seg[sz-1], mx2=seg[sz-2];
+        if(mx1&1 and mx2<(mx1+1)/2){
+            cout<<"Yes\n";
+        }
+        else cout<<"No\n";
+    }
+    else{
+        if(seg[0]&1) cout<<"Yes\n";
+        else cout<<"No\n";
+    }
 }
 
 int32_t main()
 {
     int t=1;
-    // cin>>t;
+    cin>>t;
     while (t--)
     {
         solve();
