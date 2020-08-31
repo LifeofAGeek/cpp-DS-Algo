@@ -1,3 +1,4 @@
+//coin change maximum number of ways
 #include<bits/stdc++.h>
 using namespace std;
 #define ld long double
@@ -7,15 +8,23 @@ int n;  // sum
 int sz; // size of coin array
 
 int helper(int sum, int i){
-    if(sum==0) return 1;
-    if(sum<0) return 0;
-    if(i==sz) return 0;
+    if(sum==0) {
+        return 1;
+    }
+    if(sum<0) {
+        return 0;
+    }
+    if(i==sz) {
+        return 0;
+    }
 
     int &ans=dp[sum][i];
 
-    if(ans!=-1) return ans;
+    if(ans!=-1) {
+        return ans;
+    }
 
-    ans = helper(sum-coin[i],i+1) + helper(sum,i+1); // maximum no. of ways
+    ans = helper(sum-coin[i],i) + helper(sum,i+1); // maximum no. of ways
     return ans;
 }
 
@@ -23,7 +32,7 @@ void solve(){
     //code goes here
     cin>>n>>sz;
 
-    for(int i=0;i<n;i++) cin>>coin[i];
+    for(int i=0;i<sz;i++) cin>>coin[i];
 
     memset(dp,-1,sizeof(dp));
 

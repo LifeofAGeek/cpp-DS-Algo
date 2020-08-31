@@ -1,5 +1,4 @@
 //Range Min Query 
-
 #include<bits/stdc++.h>
 #define REP(i,n) for (int i = 1; i <= n; i++)
 #define mod 1000000007
