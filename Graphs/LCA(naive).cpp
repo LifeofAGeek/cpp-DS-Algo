@@ -33,34 +33,26 @@ const int MAX=1e5+1;
 
 vi adj[MAX]; // adj list
 vi vis(MAX,0); // visited array
+vi level; // height of each node
 vi p; // parent array
 
 // linear time
 void findParent(int root){
-	queue<pair<int,int>> q;
-	q.push({root,root}); // root is parent of itself
+	queue<pair<pair<int,int>,int>> q;
+	q.push({{root,root},1}); // root is parent of itself
 
 	while(!q.empty()){
-		pair<int,int> node=q.front(); // child, parent
+		pair<pair<int,int>,int> node = q.front(); // child, parent
 		q.pop();
-		p[node.f]=node.s;
-		vis[node.f]=1;
-		for(auto child:adj[node.f]){
+		level[node.f.f]=node.s;
+		p[node.f.f]=node.f.s;
+		vis[node.f.f]=1;
+		for(auto child:adj[node.f.f]){
 			if(!vis[child]){
-				q.push({child,node.f});
+				q.push({{child,node.f.f},node.s+1});
 			}
 		}
 	}
-}
-
-// O(log(n))
-int level(int x){
-	int h=1;
-	while(p[x]!=x) {
-		h++;
-		x=p[x];
-	}
-	return h;
 }
 
 // multiple query 
@@ -77,6 +69,7 @@ void solve(){
     //code goes here
     int n; cin>>n; // n nodes
     p.resize(n+1,-1);
+    level.resize(n+1,0);
     loop(i,1,n-1){ // n-1 edges
     	int x,y;
     	cin>>x>>y;
@@ -92,8 +85,8 @@ void solve(){
 
     function<int(int,int)> LCA = [&](int a, int b)-> int{
 
-    	if(level(a)>level(b)) swap(a,b);
-    	int diff=level(b)-level(a);
+    	if(level[a]>level[b]) swap(a,b);
+    	int diff=level[b]-level[a];
 
     	while(diff>0){
     		b=p[b];
@@ -109,7 +102,7 @@ void solve(){
     	return a;
     };
 
-    cout<<LCA(2,7);
+    cout<<LCA(2,7)<<" "<<LCA(3,4)<<" "<<LCA(7,8)<<" "<<LCA(1,6);
 }
 
 int32_t main()
