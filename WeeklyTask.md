@@ -27,3 +27,11 @@
 3. Still free? Let's Introduce Graphs
    * [William Fiset](https://www.youtube.com/playlist?list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P)
    * Or [CodeNCode](https://www.youtube.com/playlist?list=PL2q4fbVm1Ik6DCzm9XZJbNwyHtHGclcEh)
+
+
+# WEEKLY TASK 4
+
+1. **Graphs**
+   * [Graph Playlist](https://www.youtube.com/playlist?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw)
+   * Counting Rooms, Labyrinth, Building Roads, Message Route, Building Teams, Round Trip, Monsters, Shortest Routes I, Shortest Routes II
+   * High Score, Flight Discount, Cycle Finding, Flight Routes, Round Trip II, Course Schedule, Longest Flight Route
